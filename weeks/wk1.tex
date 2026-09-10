@@ -299,24 +299,46 @@ Then \(V\) has a basis.
 The same conclusion holds for non-finitely generated \(V\) if one assumes \href{https://en.wikipedia.org/wiki/Zorn%27s_lemma}{Zorn's lemma}.
 
 
-\begin{proposition} If \(\left\{  {{\bf v}_1,\ldots ,{\bf v}_n}\right\}\) is a basis of \(V\), then every \(v \in  V\) can be expressed uniquely as
+The main reason for introducing basis is the following:
+\begin{theorem} \label{thm-uniquesum}
+    Let $V$ be a vector space over $\mathbb{F}$, and $\mathcal{B} \subseteq V$ is a subset. Then 
+    \begin{center}
+    \fbox{$\mathcal{B}$ is a basis of $V$ iff all $v \in V$ can be {\bf uniquely} expressed by a element in $\mathrm{Span}(\mathcal{B})$.}
+    \end{center}
+\end{theorem}
+\begin{proof}
+    We firstly explain what it means for a vector $v \in V$ to be {\bf uniquely} expressed by a element in $\mathrm{Span}(\mathcal{B})$: Namely, if 
+    \begin{equation} \label{eq-uniquelc}
+    v = \alpha_1v_1 + \dots + \alpha_nv_n = \beta_1v_1' + \dots + \beta_mv_m' \tag{*}
+    \end{equation}
+    for some {\it nonzero} $\alpha_i, \beta_j \in \mathbb{F}$ and $\{v_1, \dots v_n\}, \{v_1', \dots, v_m'\} \subseteq \mathcal{B}$ has no repeated elements (i.e. if $p \neq q$, then $v_p \neq v_q$ and $v_p' \neq v_q'$), then one has 
+    \begin{enumerate}
+        \item $n = m$,
+        \item after some reordering of the indices, $v_i = v_i'$ and $\alpha_i = \beta_i$ for all $i$.
+    \end{enumerate}
+    
 
-\[
-\mathbf{v} = \alpha_1{\bf v}_1 + \cdots  + \alpha_n{\bf v}_n
-\]
-\end{proposition}
+    \noindent $(\Rightarrow) $If $\mathcal{B}$ is a basis of $V$, by definition, $v \in\mathrm{Span}(\mathcal{B})$ for all $v \in V$. As for uniqueness, suppose \eqref{eq-uniquelc} holds. Then by reordering the indices, we assume that
+    $$\{v_1,\dots, v_n\} \cap \{v_1', \dots, v_m'\} = \{v_1 = v_1', \dots, v_k = v_k'\}.$$
+    and by subtraction, one has
+    $$(\alpha_1 - \beta_1)v_1 + \dots + (\alpha_k - \beta_k) v_k + \alpha_{k+1} v_{k+1} + \dots \alpha_{k+1} v_{n} + (-\beta_{k+1})v_{k+1}' + \dots + (-\beta_{m}) v_{m}' = {\bf 0}$$
+    Now by applying linear independence of $\mathcal{B}$ on the finite subset
+    $$\{v_1 = v_1', \dots, v_k = v_k', v_{k+1}, \dots, v_n, v_{k+1}', \dots, v_m'\},$$
+    the above equation only has zero solutions
+    $$\alpha_1 - \beta_1 = \dots = \alpha_k - \beta_k = 0$$
+    and
+    $$\alpha_{k+1} = \dots =\alpha_n = \beta_{k+1} = \dots = \beta_m = 0.$$ But the latter is impossible since we assume that all $\alpha_i, \beta_j \neq 0$, so one must have $m = n = k$, and 
+    $$\alpha_i = \beta_i \quad \quad \text{for all}\ 1 \leq i \leq k.$$
 
-\begin{proof} Since \(\left\{  {{\bf v}_1,\ldots ,{\bf v}_n}\right\}\) spans \(V\), so \(\mathbf{v} \in  V\) can be written as in the form given in the Proposition.
-Suppose further that
-\[
-\mathbf{v} = \beta_1{\bf v}_1 + \cdots  + \beta_n{\bf v}_n,
-\]
-for some $\beta_i \in \mathbb{F}$, it suffices to show that \(\alpha_{i} = \beta_{i}\) for all \(i\): Indeed, by subtracting the above equations, one has
-\[
-\left( {\alpha_1 - \beta_1}\right) {\bf v}_1 + \cdots  + \left( {\alpha_n - \beta_n}\right) {\bf v}_n = 0.
-\]
-By the hypothesis of linear independence, we have \(\alpha_{i} - \beta_{i} = 0\) for all \(i\), i.e., \(\alpha_{i} = \beta_{i}\).
+    \noindent $(\Leftarrow) $If all $v \in V$ can be expressed by elements in $\mathrm{Span}(\mathcal{B})$, then $\mathcal{B}$ is obviously a spanning set for $V$. Now suppose on contrary that $\mathcal{B}$ is {\bf not} linearly independent, then there exists a finite subset $\{b_1,\dots, b_n\} \subseteq \mathcal{B}$ and $\gamma_1, \dots, \gamma_n \in \mathbb{F}$ not all zeros such that
+    $$\gamma_1b_1 + \dots + \gamma_nb_n = {\bf 0}$$
+    By reordering the indices in the above expression, we assume $\gamma_1 \neq 0$ without loss of generality. Then
+    $$v := b_1 = (-\frac{\gamma_2}{\gamma_1}) b_2 + \dots + (-\frac{\gamma_n}{\gamma_1})b_n$$
+    are two different expressions of $v$ in $\mathrm{Span}(\mathcal{B})$, a contradiction. 
+    
+    Therefore, $\mathcal{B}$ is both a spanning set and linearly independent, and hence forms a basis of $V$.
 \end{proof}
+
 
 \subsection{Basis and Dimension}
 
@@ -504,7 +526,19 @@ $$\mathbf{w}_1 + \mathbf{w}_2 = \mathbf{0} \quad \Leftrightarrow \quad \mathbf{w
 \end{proposition}
 
 \begin{proof}
-    XXX
+(1) $\Rightarrow$ (2): Suppose ${\bf w_1} + {\bf w_2} = {\bf w_1}' + {\bf w_2}'$ for some ${\bf w_1}, {\bf w_1}' \in W_1$, ${\bf w_2}, {\bf w_2}' \in W_2$. Then
+$${\bf w_1}- {\bf w_1}' = {\bf w_2}' - {\bf w_2} \in W_1 \cap W_2$$
+since $W_1, W_2 \leq V$ are vector subspaces. Now $W_1 \cap W_2 = \{\bf 0\}$ implies that
+$${\bf w_1}- {\bf w_1}' = {\bf w_2}' - {\bf w_2} = {\bf 0}.$$
+Consequently, ${\bf w_1}= {\bf w_1}'$ and ${\bf w_2} = {\bf w_2}'$.
+
+\noindent (2) $\Rightarrow$ (3): Note that ${\bf 0} \in W_1$ and ${\bf 0} \in W_2$. So
+$${\bf w}_1 + {\bf w}_2 = {\bf 0} + {\bf 0}$$
+are two expressions of the same vector in $W_1 + W_2$. By (2), this implies that ${\bf w}_1 = {\bf 0}$, ${\bf w}_2 = {\bf 0}$.
+
+\noindent (3) $\Rightarrow$ (1): Let ${\bf v} \in W_1 \cap W_2$, then
+$$\overbrace{\bf v}^{\in W_1} + \overbrace{(-{\bf v})}^{\in W_2} = {\bf 0}.$$
+By (3), this implies ${\bf v} = -{\bf v} = {\bf 0}$, and hence $W_1 \cap W_2 = \{{\bf 0}\}$.
 \end{proof}
 
 Obviously, one can generalize \autoref{def:sumintersect} to any number of (even for uncountably many) vector subspaces:
@@ -544,10 +578,7 @@ i.e., every vector in \( V \) can be uniquely written as a sum of vectors from \
 
 \begin{proof}
 Let \( \dim(W) = k \leq n = \dim(V) \), and let \( \{ \mathbf{v}_1, \ldots, \mathbf{v}_k \} \) be a basis of \( W \).
-By the basis extension theorem, we can extend this to a basis of \( V \):
-\[
-\{ \mathbf{v}_1, \ldots, \mathbf{v}_k, \mathbf{v}_{k+1}, \ldots, \mathbf{v}_n \}.
-\]
+By the basis extension theorem (\autoref{thm: basis-extension}), we can extend this to a basis $\{ \mathbf{v}_1, \ldots, \mathbf{v}_k, \mathbf{v}_{k+1}, \ldots, \mathbf{v}_n \}$ of \( V \).
 Define
 \[
 W' := \operatorname{span} \{ \mathbf{v}_{k+1}, \ldots, \mathbf{v}_n \}.
