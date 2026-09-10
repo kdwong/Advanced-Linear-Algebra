@@ -18,7 +18,7 @@ V^* = \mathrm{Hom}_{\mathbb{F}}(V, \mathbb{F}) = \{ f : V \to \mathbb{F} \mid f 
   \[
   \phi_i^2 \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} = x_i^2
   \]
-  is not linear, hence $\phi_i^2 \notin V^*$.
+  is not linear since $\phi_i^2(2{\bf e}_i) = 4\phi_i^2({\bf e}_i) \neq 2\phi_i^2({\bf e}_i)$, hence $\phi_i^2 \notin V^*$.
 
   \item Let $V = \mathbb{F}[x]$, and define $\phi : V \to \mathbb{F}$ by $\phi(p(x)) = p(1)$. Then $\phi \in V^*$ because:
   \[
@@ -89,7 +89,7 @@ as in \autoref{def: dual-basis}. Then:
 \end{proof}
 
 \begin{corollary}\label{cor: dual-dim-equality}
-If \( \dim(V) = n \), then \( \dim(V^*) = n \).
+If \( \dim({\bf v}) = n \), then \( \dim(V^*) = n \).
 \end{corollary}
 
 \begin{proof}
@@ -100,7 +100,7 @@ Define the map
 where \( f_i \in \mathcal{B}^* \) is the dual basis corresponding to the basis \( \mathcal{B} = \{ \mathbf{v}_1, \dots, \mathbf{v}_n \} \) of \( V \) (once again, we use \autoref{rmk:linear_trans_basis} to define $\Phi$). This is a linear isomorphism.
 
 Alternatively, recall that $V^* = \mathrm{Hom}(V,\mathbb{F})$ and hence
-$$\dim(V^*) = \dim(V)\dim(\mathbb{F}) = \dim(V) \cdot 1 = \dim(V).$$
+$$\dim(V^*) = \dim({\bf v})\dim(\mathbb{F}) = \dim({\bf v}) \cdot 1 = \dim({\bf v}).$$
 \end{proof}
 
 \begin{remark}\label{rem: non-canonical-isomorphism}
@@ -177,7 +177,7 @@ Let \( V \) be a vector space. Then:
   \]
   \item If \( V \) is finite-dimensional and \( W \leq V \), then the annihilator of \( W \) “fills in the gap”:
   \[
-  \dim(W) + \dim(\mathrm{Ann}(W)) = \dim(V).
+  \dim(W) + \dim(\mathrm{Ann}(W)) = \dim({\bf v}).
   \]
 \end{enumerate}
 \end{proposition}
@@ -222,7 +222,7 @@ Let \( V \) be a vector space. Then:
 
   Let \(W \leq  V\), with \(\dim V < \infty\), then
   \[
-  \dim (\operatorname{Ann}(W)) = \dim (V) - \dim (W), \quad \dim((V/W)^*) = \dim(V/W) = \dim (V) - \dim (W).
+  \dim (\operatorname{Ann}(W)) = \dim ({\bf v}) - \dim (W), \quad \dim((V/W)^*) = \dim(V/W) = \dim ({\bf v}) - \dim (W).
   \]
 \end{enumerate}
 \end{enumerate}
@@ -230,8 +230,8 @@ So the result follows.
 \end{proof}
 
 \section{Adjoint Map}
-In the previous section, if $\dim(V) < \infty$, then both
-$V/W$ and $\operatorname{Ann}(W)$ has dimensional equal to $\dim(V) - \dim(W)$. One wishes to define a {\it natural} isomorphism between them without specifying any bases.
+In the previous section, if $\dim({\bf v}) < \infty$, then both
+$V/W$ and $\operatorname{Ann}(W)$ has dimensional equal to $\dim({\bf v}) - \dim(W)$. One wishes to define a {\it natural} isomorphism between them without specifying any bases.
 
 In fact, the more natural isomorphism is instead:
   \[
@@ -284,7 +284,7 @@ T^* : W^* \to V^*
 \]
 such that for any \( f \in W^* \),
 \[
-[T^*(f)](v) := f(T(v)), \quad \forall v \in V.
+[T^*(f)]({\bf v}) := f(T({\bf v})), \quad \forall {\bf v} \in V.
 \]
 \end{definition}
 
@@ -293,10 +293,10 @@ such that for any \( f \in W^* \),
 
   \item Moreover, the mapping \( T^* \) itself is a linear transformation. For \( f, g \in W^* \), and for all \( v \in V \),
   \begin{align*}
-  [T^*(af + bg)](v) &= (af + bg)[T(v)] \\
-  &= a f(T(v)) + b g(T(v)) \\
-  &= a [T^*(f)](v) + b [T^*(g)](v) \\
-  &= [a T^*(f) + b T^*(g)](v).
+  [T^*(af + bg)]({\bf v}) &= (af + bg)[T({\bf v})] \\
+  &= a f(T({\bf v})) + b g(T({\bf v})) \\
+  &= a [T^*(f)]({\bf v}) + b [T^*(g)]({\bf v}) \\
+  &= [a T^*(f) + b T^*(g)]({\bf v}).
   \end{align*}
 \end{enumerate}
 
@@ -317,18 +317,18 @@ We prove only part (2): If \( T \) is surjective, then \( T^* \) is injective.
 
 Suppose \( g \in W^* \) and \( T^*(g) = 0_{V^*} \). Then, by definition of the adjoint map:
 \begin{equation} \label{eq:adjoint-kernel}
-[T^*(g)](v) = g(T(v)) = 0, \quad \forall v \in V.
+[T^*(g)]({\bf v}) = g(T({\bf v})) = 0, \quad \forall v \in V.
 \end{equation}
 
-We want to show \( g = 0_{W^*} \), i.e., \( g(w) = 0 \) for all \( w \in W \).
+We want to show \( g = 0_{W^*} \), i.e., \( g(w) = 0 \) for all \( {\bf w} \in W \).
 
 Since \( T \) is surjective, for every \( w \in W \), there exists \( v' \in V \) such that
 \[
-w = T(v').
+{\bf w} = T({\bf v}').
 \]
 Substituting into \eqref{eq:adjoint-kernel}, we get
 \[
-g(w) = g(T(v')) = 0.
+g(w) = g(T({\bf v}')) = 0.
 \]
 Hence, \( g = 0_{W^*} \in Ker(T*)\) and \( T^* \) is thus injective.
 \end{proof}
@@ -337,9 +337,9 @@ The following proposition shows the effect of adjoint map on matrix representati
 \begin{proposition}
 Let \( T : V \to W \) be a linear transformation, and let \( \mathcal{A} = \{ \mathbf{v}_1, \dots, \mathbf{v}_n \} \), \( \mathcal{B} = \{ \mathbf{w}_1, \dots, \mathbf{w}_m \} \) be bases of \( V \) and \( W \), respectively. Let \( \mathcal{A}^* = \{ f_1, \dots, f_n \} \), \( \mathcal{B}^* = \{ g_1, \dots, g_m \} \) be the dual bases of \( V^* \) and \( W^* \), respectively. Then the adjoint \( T^* : W^* \to V^* \) has a matrix representation
 \[
-[T^*]_{\mathcal{A}^*, \mathcal{B}^*} = \left([T]_{\mathcal{B}, \mathcal{A}}\right)^{\mathsf{T}},
+[T^*]_{\mathcal{A}^*, \mathcal{B}^*} = \left(T_{\mathcal{B}, \mathcal{A}}\right)^{\mathsf{T}},
 \]
-where \([T^*]_{\mathcal{A}^*, \mathcal{B}^*} \in \mathbb{R}^{n \times m}\) and \([T]_{\mathcal{B}, \mathcal{A}} \in \mathbb{R}^{m \times n}\).
+where \([T^*]_{\mathcal{A}^*, \mathcal{B}^*} \in \mathbb{R}^{n \times m}\) and \(T_{\mathcal{B}, \mathcal{A}} \in \mathbb{R}^{m \times n}\).
 \end{proposition}
 
 \begin{proof}
@@ -396,7 +396,7 @@ So $\Psi = (\pi_W)^*$ is our candidate of the inverse of $\Phi$.
 \[
 \Phi \circ \Psi = \operatorname{id}_{(V/W)^*}, \quad \Psi \circ \Phi = \operatorname{id}_{\operatorname{Ann}(W)}.
 \]
-Consequently, one has a natural isomorphism $(V/W)^* \cong \operatorname{Ann}(W)$ regardless of whether $\dim(V) < \infty$ or not.
+Consequently, one has a natural isomorphism $(V/W)^* \cong \operatorname{Ann}(W)$ regardless of whether $\dim({\bf v}) < \infty$ or not.
 \end{theorem}
 \begin{proof}
     Recall that for $f \in \mathrm{Ann}(W)$, $\Phi(f) \in (V/W)^*$ satisfies:
@@ -415,9 +415,9 @@ Consequently, one has a natural isomorphism $(V/W)^* \cong \operatorname{Ann}(W)
 
 %my idea: \( \Phi : \operatorname{Ann}(W) \rightarrow (V/W)^*\)
 %\begin{enumerate}    \item Since \((\pi_W)*:(V/W)^* \rightarrow \operatorname{Ann}(W)\) is an injection, we can define \(\Phi\) as its inverse, which is a surjection and allow the left identity to hold.
-%    \item Similar to \[  \left[(\pi_W)^*(h)\right](w) = h(w + W) \], we see for \(f \in \operatorname{Ann}(W)\) and \(v + W \in V/W\), we define:\[\left[\Phi(f)\right](v + W) = f(v).\]
-%   \item We can now show the left identity, \(h \in (V/W)^*\) and \(v\in V\)  \[\Phi((\pi_W)^*)(h)(v) = \Phi(h)(v + W) = h(v)\]
-% \item And the right: \[((\pi_W)^* \circ \Phi) (f)(v) = (\pi_W)^*(f)(v) = f(v+W) = f(v) \] for \(h \in \operatorname{Ann}(W) \text{ and } v \in W\)
+%    \item Similar to \[  \left[(\pi_W)^*(h)\right](w) = h(w + W) \], we see for \(f \in \operatorname{Ann}(W)\) and \(v + W \in V/W\), we define:\[\left[\Phi(f)\right](v + W) = f({\bf v}).\]
+%   \item We can now show the left identity, \(h \in (V/W)^*\) and \(v\in V\)  \[\Phi((\pi_W)^*)(h)({\bf v}) = \Phi(h)(v + W) = h({\bf v})\]
+% \item And the right: \[((\pi_W)^* \circ \Phi) (f)({\bf v}) = (\pi_W)^*(f)({\bf v}) = f(v+W) = f({\bf v}) \] for \(h \in \operatorname{Ann}(W) \text{ and } v \in W\)
 %\end{enumerate}
 
 %I think there is problem in my idea since I inputted \(v \in V\) into \(h: V/W \rightarrow \mathbb{F}\) and \(v + W  \in V/W\) into \(f: W \rightarrow \{0\}\). That is mixing coset and vectors. But, i cant figure out another way to show this.
