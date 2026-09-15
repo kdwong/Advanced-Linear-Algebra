@@ -254,22 +254,22 @@ holds for all \(x\), and try to solve for \(\alpha_1,\ldots ,\alpha_n\) (one way
 \end{example}
 
 
-\begin{definition}[Basis] A subset \(S\) is a {\bf basis} of \(V\) if
+\begin{definition}[Basis] A subset \(\mathcal B\) is a {\bf basis} of \(V\) if
 
-(a) \(S\) spans \(V\); and
+(a) \(\mathcal B\) spans \(V\); and
 
-(b) \(S\) is linearly independent.
+(b) \(\mathcal B\) is linearly independent.
 \end{definition}
 
 \begin{example} 
 \leavevmode
-1. For \(V = {\mathbb{R}}^n,S = \left\{  {{\mathbf{e}}_1,\ldots ,{\mathbf{e}}_n}\right\}\) is a basis of \(V\)
+1. For \(V = {\mathbb{R}}^n,\mathcal B = \left\{  {{\mathbf{e}}_1,\ldots ,{\mathbf{e}}_n}\right\}\) is a basis of \(V\)
 
-2. For \(V = \mathbb{R}\left\lbrack  x\right\rbrack  ,S = \left\{  {1,x,{x}^2,\ldots }\right\}\) is a basis of \(V\)
+2. For \(V = \mathbb{R}\left\lbrack  x\right\rbrack  ,\mathcal B = \left\{  {1,x,{x}^2,\ldots }\right\}\) is a basis of \(V\)
 
 3. For \(V = {M}_{2 \times  2}\left( \mathbb{R}\right)\),
 \[
-S = \left\{  {\left( \begin{array}{ll} 1 & 0 \\  0 & 0 \end{array}\right) ,\left( \begin{array}{ll} 0 & 1 \\  0 & 0 \end{array}\right) ,\left( \begin{array}{ll} 0 & 0 \\  1 & 0 \end{array}\right) ,\left( \begin{array}{ll} 0 & 0 \\  0 & 1 \end{array}\right) }\right\}
+\mathcal B = \left\{  {\left( \begin{array}{ll} 1 & 0 \\  0 & 0 \end{array}\right) ,\left( \begin{array}{ll} 0 & 1 \\  0 & 0 \end{array}\right) ,\left( \begin{array}{ll} 0 & 0 \\  1 & 0 \end{array}\right) ,\left( \begin{array}{ll} 0 & 0 \\  0 & 1 \end{array}\right) }\right\}
 \]
 is a basis of \(V\).
 \end{example}
@@ -386,7 +386,7 @@ We now claim that $\{ \mathbf{v}_1, \mathbf{w}_2, \ldots, \mathbf{w}_n \}$ is a 
   \end{itemize}
 \end{enumerate}
 
-Thus $\{ \mathbf{v}_1, \mathbf{w}_2, \ldots, \mathbf{w}_n \}$ is a basis. By repeating this replacement process, we ultimately construct
+Thus $\{ \mathbf{v}_1, \mathbf{w}_2, \ldots, \mathbf{w}_n \}$ is a basis. By repeating this replacement process (why can it be repeated?), we can replace ${\bf w_2}$ by ${\bf v_2}$, ${\bf w_3}$ by ${\bf v_3}$ and so on, so one ultimately constructs
 \[\mathcal{B} :=
 \{ \mathbf{v}_1, \ldots, \mathbf{v}_m, \mathbf{w}_{m+1}, \ldots, \mathbf{w}_n \}
 \]
@@ -495,6 +495,10 @@ Continue this process by removing more vectors $\mathbf{w}_3$, $\dots$, so that 
 is linearly independent and spans $V$. Then this becomes a basis of $V$. Moreover, one has $\ell = k+1$ by \autoref{thm:basisdim}.
 \end{proof}
 
+\begin{remark}
+    Basis extension theorem also works for infinite dimensional vector spaces. Namely for any linearly independent set $\mathcal L \subseteq V$, one can extend it to get a basis $\mathcal B \supseteq \mathcal L$ of $V$.
+\end{remark}
+
 \subsection{Intersection and Sum of Vector Subspaces}
 
 \begin{definition} \label{def:sumintersect} Let \(W_1\), \(W_2\) be two vector subspaces of \(V\). Then:
@@ -504,7 +508,8 @@ is linearly independent and spans $V$. Then this becomes a basis of $V$. Moreove
 
   \item \(W_1 + W_2 := \left\{ \mathbf{w}_1 + \mathbf{w}_2 \mid \mathbf{w}_i \in W_i\ \text{for}\ i = 1,2 \right\}\)
 
-  \item Furthermore, if \(W_1 \cap W_2 = \{ \mathbf{0} \}\), then \(W_1 + W_2 = W_1 \oplus W_2\) is called the \emph{direct sum} of $W_1$ and $W_2$.
+  \item Furthermore, we call \(W_1 + W_2 = W_1 \oplus W_2\) is called the \emph{direct sum} of $W_1$ and $W_2$ if the following holds: For any \( \mathbf{w}_1 \in W_1 \) and \( \mathbf{w}_2 \in W_2 \), 
+$$\mathbf{w}_1 + \mathbf{w}_2 = \mathbf{0} \quad \Leftrightarrow \quad \mathbf{w}_1 = \mathbf{w}_2 = \mathbf{0}.$$
 \end{enumerate}
 \end{definition}
 
@@ -516,29 +521,91 @@ is linearly independent and spans $V$. Then this becomes a basis of $V$. Moreove
 \end{proof}
 
 \begin{proposition}
-Let \( W_1, W_2 \) be subspaces of a vector space \( V \). The following are equivalent (TFAE):
+Let \(W_1,W_2\) be subspaces of a vector space \(V\). The following are equivalent:
 \begin{enumerate}
-\item $W_1 + W_2 = W_1 \oplus W_2$ is a direct sum
-\item Every \( \mathbf{w} \in W_1 + W_2 \) can be uniquely written as $\mathbf{w} = \mathbf{w}_1 + \mathbf{w}_2$ for \( \mathbf{w}_1 \in W_1 \) and \( \mathbf{w}_2 \in W_2 \).
-\item For \( \mathbf{w}_1 \in W_1 \) and \( \mathbf{w}_2 \in W_2 \), 
-$$\mathbf{w}_1 + \mathbf{w}_2 = \mathbf{0} \quad \Leftrightarrow \quad \mathbf{w}_1 = \mathbf{w}_2 = \mathbf{0}.$$
+    \item \(W_1+W_2=W_1\oplus W_2\), i.e., the sum is direct.
+    \item Every \(\mathbf w\in W_1+W_2\) can be written uniquely as
+    \[
+    \mathbf w=\mathbf w_1+\mathbf w_2,
+    \qquad
+    \mathbf w_1\in W_1,\quad \mathbf w_2\in W_2.
+    \]
+    \item \(W_1\cap W_2=\{\mathbf 0\}\).
 \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-(1) $\Rightarrow$ (2): Suppose ${\bf w_1} + {\bf w_2} = {\bf w_1}' + {\bf w_2}'$ for some ${\bf w_1}, {\bf w_1}' \in W_1$, ${\bf w_2}, {\bf w_2}' \in W_2$. Then
-$${\bf w_1}- {\bf w_1}' = {\bf w_2}' - {\bf w_2} \in W_1 \cap W_2$$
-since $W_1, W_2 \leq V$ are vector subspaces. Now $W_1 \cap W_2 = \{\bf 0\}$ implies that
-$${\bf w_1}- {\bf w_1}' = {\bf w_2}' - {\bf w_2} = {\bf 0}.$$
-Consequently, ${\bf w_1}= {\bf w_1}'$ and ${\bf w_2} = {\bf w_2}'$.
+\noindent
+\((1)\Rightarrow(2)\):
+Since \(W_1+W_2\) is a direct sum, we have
+\[
+W_1\cap W_2=\{\mathbf 0\}.
+\]
+Every \(\mathbf w\in W_1+W_2\) has an expression
+\[
+\mathbf w=\mathbf w_1+\mathbf w_2
+\]
+with \(\mathbf w_1\in W_1\) and \(\mathbf w_2\in W_2\), by the definition
+of \(W_1+W_2\). It remains to prove uniqueness.
 
-\noindent (2) $\Rightarrow$ (3): Note that ${\bf 0} \in W_1$ and ${\bf 0} \in W_2$. So
-$${\bf w}_1 + {\bf w}_2 = {\bf 0} + {\bf 0}$$
-are two expressions of the same vector in $W_1 + W_2$. By (2), this implies that ${\bf w}_1 = {\bf 0}$, ${\bf w}_2 = {\bf 0}$.
+Suppose
+\[
+\mathbf w=\mathbf w_1+\mathbf w_2
+          =\mathbf w_1'+\mathbf w_2',
+\]
+where \(\mathbf w_1,\mathbf w_1'\in W_1\) and
+\(\mathbf w_2,\mathbf w_2'\in W_2\). Then
+\[
+\mathbf w_1-\mathbf w_1'
+=
+\mathbf w_2'-\mathbf w_2.
+\]
+The left-hand side belongs to \(W_1\), while the right-hand side belongs
+to \(W_2\). Hence their common value belongs to \(W_1\cap W_2\). Since
+\(W_1\cap W_2=\{\mathbf 0\}\), it follows that
+\[
+\mathbf w_1-\mathbf w_1'=\mathbf 0
+\qquad\text{and}\qquad
+\mathbf w_2'-\mathbf w_2=\mathbf 0.
+\]
+Therefore,
+\[
+\mathbf w_1=\mathbf w_1'
+\qquad\text{and}\qquad
+\mathbf w_2=\mathbf w_2'.
+\]
 
-\noindent (3) $\Rightarrow$ (1): Let ${\bf v} \in W_1 \cap W_2$, then
-$$\overbrace{\bf v}^{\in W_1} + \overbrace{(-{\bf v})}^{\in W_2} = {\bf 0}.$$
-By (3), this implies ${\bf v} = -{\bf v} = {\bf 0}$, and hence $W_1 \cap W_2 = \{{\bf 0}\}$.
+\medskip
+\noindent
+\((2)\Rightarrow(3)\):
+Let \(\mathbf v\in W_1\cap W_2\). Since \(\mathbf v\in W_1\) and
+\(\mathbf v\in W_2\), the vector \(\mathbf v\) has the two decompositions
+\[
+\mathbf v=\mathbf v+\mathbf 0
+\qquad\text{and}\qquad
+\mathbf v=\mathbf 0+\mathbf v,
+\]
+where in each decomposition the first summand belongs to \(W_1\) and
+the second belongs to \(W_2\). By uniqueness, we obtain
+\[
+\mathbf v=\mathbf 0.
+\]
+Thus every vector in \(W_1\cap W_2\) is zero, and therefore
+\[
+W_1\cap W_2=\{\mathbf 0\}.
+\]
+
+\medskip
+\noindent
+\((3)\Rightarrow(1)\):
+By assumption,
+\[
+W_1\cap W_2=\{\mathbf 0\}.
+\]
+Therefore the sum \(W_1+W_2\) is direct, so
+\[
+W_1+W_2=W_1\oplus W_2.
+\]
 \end{proof}
 
 Obviously, one can generalize \autoref{def:sumintersect} to any number of (even for uncountably many) vector subspaces:
