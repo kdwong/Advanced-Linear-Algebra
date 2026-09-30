@@ -270,10 +270,13 @@ The map \( \Phi \) is a linear transformation, i.e.,
 \end{proposition}
 
 \begin{proof}
-It suffices to show that
+For every \(\mathbf{v}+W\in V/W\),
 \[
-\widetilde{(af + bg)} = a\widetilde{f} + b\widetilde{g}.
+\widetilde{(af+bg)}(\mathbf{v}+W)
+=(af+bg)(\mathbf{v})
+=a\widetilde f(\mathbf{v}+W)+b\widetilde g(\mathbf{v}+W).
 \]
+Hence \(\widetilde{(af+bg)}=a\widetilde f+b\widetilde g\).
 \end{proof}
 
 Now we have constructed the natural linear transformation $\Phi$ without specifying any bases. To see whether \( \Phi \) is a bijection, we will construct its inverse \( \Psi \). In order to do so, we need the following:
@@ -313,24 +316,21 @@ T : V \to W, \quad T^* : W^* \to V^*.
 \end{proposition}
 
 \begin{proof}
-We prove only part (2): If \( T \) is surjective, then \( T^* \) is injective.
-
-Suppose \( g \in W^* \) and \( T^*(g) = 0_{V^*} \). Then, by definition of the adjoint map:
-\begin{equation} \label{eq:adjoint-kernel}
-[T^*(g)]({\bf v}) = g(T({\bf v})) = 0, \quad \forall v \in V.
-\end{equation}
-
-We want to show \( g = 0_{W^*} \), i.e., \( g(w) = 0 \) for all \( {\bf w} \in W \).
-
-Since \( T \) is surjective, for every \( w \in W \), there exists \( v' \in V \) such that
+\textbf{(1)} Suppose \(T\) is injective, and let \(f\in V^*\). Define
 \[
-{\bf w} = T({\bf v}').
+h_0:T(V)\to\mathbb F,\qquad h_0(T(\mathbf v)):=f(\mathbf v).
 \]
-Substituting into \eqref{eq:adjoint-kernel}, we get
+This is well-defined because \(T\) is injective. Extend \(h_0\) to a linear functional \(h\in W^*\). Then
 \[
-g(w) = g(T({\bf v}')) = 0.
+[T^*(h)](\mathbf v)=h(T(\mathbf v))=f(\mathbf v),
 \]
-Hence, \( g = 0_{W^*} \in Ker(T*)\) and \( T^* \) is thus injective.
+so \(T^*(h)=f\). Hence \(T^*\) is surjective.
+
+\textbf{(2)} Suppose \(T\) is surjective and \(g\in W^*\) satisfies \(T^*(g)=0_{V^*}\). For every \(\mathbf w\in W\), choose \(\mathbf v\in V\) with \(T(\mathbf v)=\mathbf w\). Then
+\[
+g(\mathbf w)=g(T(\mathbf v))=[T^*(g)](\mathbf v)=0.
+\]
+Hence \(g=0_{W^*}\), so \(T^*\) is injective.
 \end{proof}
 
 The following proposition shows the effect of adjoint map on matrix representations:
@@ -339,27 +339,33 @@ Let \( T : V \to W \) be a linear transformation, and let \( \mathcal{A} = \{ \m
 \[
 [T^*]_{\mathcal{A}^*, \mathcal{B}^*} = \left(T_{\mathcal{B}, \mathcal{A}}\right)^{\mathsf{T}},
 \]
-where \([T^*]_{\mathcal{A}^*, \mathcal{B}^*} \in \mathbb{R}^{n \times m}\) and \(T_{\mathcal{B}, \mathcal{A}} \in \mathbb{R}^{m \times n}\).
+where \([T^*]_{\mathcal{A}^*, \mathcal{B}^*} \in \mathbb{F}^{n \times m}\) and \(T_{\mathcal{B}, \mathcal{A}} \in \mathbb{F}^{m \times n}\).
 \end{proposition}
 
 \begin{proof}
-Let \([T]_{\mathcal{B}, \mathcal{A}} = (\alpha_{ij})\) and \([T^*]_{\mathcal{A}^*, \mathcal{B}^*} = (\beta_{ij})\). By definition of the matrix representation:
-
+Let \([T]_{\mathcal{B},\mathcal{A}}=(\alpha_{ij})\) and \([T^*]_{\mathcal{A}^*,\mathcal{B}^*}=(\beta_{ij})\). Thus
 \[
-T(\mathbf{v}_j) = \sum_{i=1}^{m} \alpha_{ij} \mathbf{w}_i, \quad T^*(g_j) = \sum_{k=1}^{n} \beta_{kj} f_k \in V^*.
+T(\mathbf v_i)=\sum_{\ell=1}^m\alpha_{\ell i}\mathbf w_\ell,
+\qquad
+T^*(g_j)=\sum_{k=1}^n\beta_{kj}f_k.
 \]
-
-Then for any \( i, j \), we compute:
+Evaluating at \(\mathbf v_i\), we obtain
 \[
-[T^*(g_j)](\mathbf{v}_j) = g_j(T(\mathbf{v}_j)) = g_j\left( \sum_{\ell=1}^{m} \alpha_{\ell j} \mathbf{w}_\ell \right) = \sum_{\ell=1}^{m} \alpha_{\ell j} g_j(\mathbf{w}_\ell) = \alpha_{ij}.
+[T^*(g_j)](\mathbf v_i)
+=g_j(T(\mathbf v_i))
+=\alpha_{ji},
 \]
-
-On the other hand:
+while
 \[
-[T^*(g_j)](\mathbf{v}_j) = \left( \sum_{k=1}^{n} \beta_{kj} f_k \right)(\mathbf{v}_j) = \sum_{k=1}^{n} \beta_{kj} f_k(\mathbf{v}_j) = \beta_{ji}.
+[T^*(g_j)](\mathbf v_i)
+=\sum_{k=1}^n\beta_{kj}f_k(\mathbf v_i)
+=\beta_{ij}.
 \]
-
-Therefore, we conclude that \( \beta_{ij} = \alpha_{ij} \), so \( [T^*] = [T]^{\mathsf{T}} \).
+Hence \(\beta_{ij}=\alpha_{ji}\), so
+\[
+[T^*]_{\mathcal{A}^*,\mathcal{B}^*}
+=\left(T_{\mathcal{B},\mathcal{A}}\right)^{\mathsf T}.
+\]
 \end{proof}
 
 \subsection{Relationship between Annihilator and Dual of Quotient Spaces}

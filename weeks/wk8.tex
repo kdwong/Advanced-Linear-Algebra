@@ -128,11 +128,11 @@ Then the following hold:
         V = V_1 \oplus \cdots \oplus V_k. \label{eq:direct-sum}
     \end{equation}
 
-    \item Since \(p_i(T)^{e_i} \mathbf{v} = 0\) for any \(\mathbf{v} \in V_i\), it follows that \(m_{T|_{V_i}}(x) \mid p_i(x)^{e_i}\). By \autoref{cor:cayley-hamiton-cor}, we have
+    \item Since \(p_i(T)^{e_i} \mathbf{v} = 0\) for any \(\mathbf{v} \in V_i\), it follows that \(m_{T|_{V_i}}(x) \mid p_i(x)^{e_i}\). By \autoref{cor:cayley-hamiton-cor}, for each \(i\) we have
     \[
     m_{T|_{V_i}}(x) = p_i(x)^{f_i}, \quad \text{for some } 1 \leq f_i \leq e_i.
     \]
-    Suppose \(f_i < e_i\) for some \(i\). Let \(\mathbf{v} := \sum_{j=1}^k \mathbf{v}_j\), with \(\mathbf{v}_j \in V_j\), and define
+    Suppose \(f_i < e_i\) for some \(i\). Let \(\mathbf{v} = \sum_{j=1}^k \mathbf{v}_j\) be arbitrary, with \(\mathbf{v}_j \in V_j\), and define
     \[
     f(x) := \prod_{j=1}^k p_j(x)^{f_j}.
     \]
@@ -184,7 +184,7 @@ m_T(x) = (x - \mu_1)(x - \mu_2) \cdots (x - \mu_k),
 \]
 with \(\mu_1, \ldots, \mu_k \in \mathbb{F}\) distinct. Define:
 \[
-q_i(x) := (x - \mu_1) \cdots \widehat{(x-\mu_i)} \cdot (c-\mu_k)
+q_i(x) := \frac{m_T(x)}{x-\mu_i}
 \]
 As in the proof of \autoref{thm:primary-decomposition} such that $m_T(x) = (x - \mu_i) q_i(x)$, and there exist polynomials \(a_1(x), \ldots, a_k(x) \in \mathbb{F}[x]\) such that
 \[
@@ -233,7 +233,13 @@ We now verify the required properties:
     \[
     T \mathbf{v} = \sum_{i=1}^k T(P_i \mathbf{v}) = \sum_{i=1}^k P_i T(\mathbf{v}) \quad \text{(since } T P_i = P_i T\text{)}.
     \]
-    But \(P_i \mathbf{v} \in V_i\), and \(T|_{V_i} = \mu_i \cdot \mathrm{id}_{V_i}\), so:
+    Moreover,
+    \[
+    (T-\mu_i I)P_i
+    =a_i(T)(T-\mu_i I)q_i(T)
+    =a_i(T)m_T(T)=0,
+    \]
+    so \(P_i \mathbf{v} \in V_i\). Since \(T|_{V_i} = \mu_i \cdot \mathrm{id}_{V_i}\),
     \[
     T(P_i \mathbf{v}) = \mu_i P_i \mathbf{v}.
     \]
@@ -259,9 +265,9 @@ where the \( \lambda_i \in \mathbb{F} \) are distinct eigenvalues.
 
 Then there exists a basis \( \mathcal{A} \) of \( V \) such that the matrix representation of \( T \) with respect to \( \mathcal{A} \) is block diagonal:
 \[
-T_{\mathcal{A}, \mathcal{A}} = \operatorname{diag}(J_1, \ldots, J_k),
+T_{\mathcal{A}, \mathcal{A}} = \operatorname{diag}(J_1, \ldots, J_\ell),
 \]
-where each block \( J_i \) is a \emph{Jordan block} of the form
+where each block \( J_r \) is a \emph{Jordan block} of the form
 \[
 J_i = \begin{pmatrix}
 \mu & 1 & 0 & \cdots & 0 \\
@@ -280,8 +286,8 @@ By the \hyperref[thm:primary-decomposition]{Primary Decomposition Theorem }, we 
 V = V_1 \oplus \cdots \oplus V_k,
 \quad \text{where } V_i = \ker \left( (T - \lambda_i I)^{e_i} \right),
 \]
-and each subspace \( \mathbf{v}_i \) is \( T \)-invariant.
-Moreover, choose a basis \( \mathcal{B}_i \) of \( \mathbf{v}_i \) for each $V_i$. Then the union \(\mathcal{B} := \bigcup_{i=1}^k \mathcal{B}_i
+and each subspace \( V_i \) is \( T \)-invariant.
+Moreover, choose a basis \( \mathcal{B}_i \) of \( V_i \) for each $V_i$. Then the union \(\mathcal{B} := \bigcup_{i=1}^k \mathcal{B}_i
 \) forms a basis of \( V \), and the matrix representation of \( T \) in this basis is block diagonal:
 \[
 T_{\mathcal{B}, \mathcal{B}} =
@@ -292,7 +298,7 @@ T_{\mathcal{B}, \mathcal{B}} =
 0 & 0 & \cdots & [T|_{\mathbf{v}_k}]_{\mathcal{B}_k, \mathcal{B}_k}
 \end{bmatrix},
 \]
-with \( m_{T|_{\mathbf{v}_i}}(x) = (x - \lambda_i)^{e_i} \).
+with \( m_{T|_{V_i}}(x) = (x - \lambda_i)^{e_i} \).
 
 \medskip
 
@@ -354,7 +360,7 @@ And consider a {\bf set} $\mathcal{C}_m'$ in $W_{m-1}$:
 \[
 \mathcal{C}_m' = \{ T({\bf u}_1) + \ker(T^{m-2}), \ldots, T({\bf u}_{\ell}) + \ker(T^{m-2}) \} \subseteq W_{m-1}.
 \]
-(Note that each $T^{m-1}(T({\bf u}_j)) = T({\bf u}_j) = {\bf 0}$ since ${\bf u}_j \in \ker(T)$, therefore $T({\bf u}_j) \in \ker(T^{m-1})$)
+(Note that $T^{m-1}(T({\bf u}_j))=T^m({\bf u}_j)={\bf 0}$ since ${\bf u}_j\in\ker(T^m)$, therefore $T({\bf u}_j)\in\ker(T^{m-1})$.)
 
 {\bf Claim:} \(\mathcal{C}_{m}'\) is linearly independent in $W_{m-1}$: consider the equation
 \[
@@ -368,7 +374,7 @@ In other words, ${\mathop{\sum }\limits_{j}k_j{\bf u}_j} \in  \ker \left( {T}^{m
 \[
 {\mathop{\sum }\limits_{j}k_j{\bf u}_j} + \ker \left( {T}^{m-1}\right)  = {\mathbf{0}}_{W_m} \Leftrightarrow  \mathop{\sum }\limits_{j}k_j\left( {{{\bf u}_j} + \ker \left( {T}^{m-1}\right) }\right)  = {\mathbf{0}}_{W_m}.
 \]
-Since \(\mathcal{B}_m = \left\{ {\bf u}_j + \ker \left( {T}^{m-1}\right)\ |\ 1 \leq j \leq \ell_m\right\}\) forms a basis of \({W}_m\), we have \(k_j = 0\) for all \(j\), and $\mathcal{C}_m'$ is linearly independent in $W_{m-1}$. 
+Since \(\mathcal{B}_m' = \left\{ {\bf u}_j + \ker \left( {T}^{m-1}\right)\ |\ 1 \leq j \leq \ell\right\}\) forms a basis of \({W}_m\), we have \(k_j = 0\) for all \(j\), and $\mathcal{C}_m'$ is linearly independent in $W_{m-1}$. 
 
 By Basis Extension Theorem, one can get a basis of $W_{m-1}$ of the form
 \[
@@ -471,13 +477,13 @@ Consequently, we have the following collection of bases of $W_i$:
 \end{array}
 \]}
 
-Indeed, by removing the $\ker(T^i)$'s in the above list, the vectors will give a basis of $V$ (Exercise). Now choose the ordered basis \( \mathcal{A} \) of $V$ by arranging the vectors:
+Indeed, let $K_i:=\ker(T^i)$. Each displayed set gives representatives of a basis of $K_i/K_{i-1}$. Inductively, adjoining representatives of a basis of $K_i/K_{i-1}$ to a basis of $K_{i-1}$ gives a basis of $K_i$. Hence the listed representatives give a basis of $K_m=V$. Now choose the ordered basis \( \mathcal{A} \) of $V$ by arranging the vectors:
 \[
 \mathcal{A} = \left\{ 
 \begin{matrix}
 T^{m-1}({\bf u}_1), & T^{m-2}({\bf u}_1), & \cdots & T^2({\bf u}_1), & T({\bf u}_1), & {\bf u}_1, \\
 \vdots & \vdots &  & \vdots & \vdots & \vdots\\
-T^{m-1}({\bf u}_{\ell}), & T^{m-2}({\bf u}_{\ell}), & \cdots & T^2({\bf u}_1), & T({\bf u}_{\ell}), & {\bf u}_{\ell}, \\
+T^{m-1}({\bf u}_{\ell}), & T^{m-2}({\bf u}_{\ell}), & \cdots & T^2({\bf u}_{\ell}), & T({\bf u}_{\ell}), & {\bf u}_{\ell}, \\
 T^{m-2}({\bf v}_1), & T^{m-3}({\bf v}_1), & \cdots & T({\bf v}_1), & {\bf v}_1, &  \\
 \vdots & \vdots &  & \vdots & \vdots \\
 T^{m-2}({\bf v}_p), & T^{m-3}({\bf v}_p), & \cdots & T({\bf v}_p), & {\bf v}_p, &  \\
@@ -510,7 +516,7 @@ where $N_i = \begin{pmatrix}
         & 0 & \ddots &        \\
         &         & \ddots & 1      \\
         &         &        & 0
-\end{pmatrix}$ is an $i \times i$-matrix, and $J_m$ appears $\ell$ times, $J_{m-1}$ appears $p$ times, $J_{m-2}$ appears $q$ times in the above matrix.
+\end{pmatrix}$ is an $i \times i$-matrix, and $N_m$ appears $\ell$ times, $N_{m-1}$ appears $p$ times, $N_{m-2}$ appears $q$ times in the above matrix.
 \end{proof}
 
 \subsection{Third Step of Proof}

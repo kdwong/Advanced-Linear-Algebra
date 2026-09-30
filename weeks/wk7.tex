@@ -93,7 +93,7 @@ which lies in a vector space $\mathrm{Hom}(V,V)$ of dimension \( n^2 \). Therefo
 \[
 a_0 I + a_1 T + \cdots + a_{n^2} T^{n^2} = 0.
 \]
-That is, there exists a nonzero polynomial \( g(x) \in \mathbb{F}[x] \) with \( \deg(g) < n^2 \) such that \( g(T) = 0 \). Thus a minimal-degree such polynomial exists.
+That is, there exists a nonzero polynomial \( g(x) \in \mathbb{F}[x] \) with \( \deg(g) \leq n^2 \) such that \( g(T) = 0 \). Thus a minimal-degree such polynomial exists.
 \end{proof}
 
 \begin{proposition}[Uniqueness]\label{prop:minpoly-uniqueness}
@@ -197,7 +197,7 @@ can be factorized into linear terms. However, this is not always possible over a
 A = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \in M_{2 \times 2}(\mathbb{R}).
 \]
 Its characteristic polynomial is \( \mathcal{X}_A(x) = x^2 + 1 \), which cannot be factorized into linear terms in \( \mathbb{R}[x] \). However, we may always extend the field to its {\bf algebraic closure} 
-\[ \overline{\mathbb{F}} \supseteq \mathbb{F} \] (e.g. $\mathbb{C} \supseteq \mathbb{R}$) so that \( \mathcal{X}_A(x) \in \mathbb{F}[x] \subseteq \overline{\mathbb{F}}[x]\) always admits the factorization (e.g. $\mathcal{X}_A(x) = (x - i)(x +1)$ in $\mathbb{C}[x]$).
+\[ \overline{\mathbb{F}} \supseteq \mathbb{F} \] (e.g. $\mathbb{C} \supseteq \mathbb{R}$) so that \( \mathcal{X}_A(x) \in \mathbb{F}[x] \subseteq \overline{\mathbb{F}}[x]\) always admits the factorization (e.g. $\mathcal{X}_A(x) = (x - i)(x + i)$ in $\mathbb{C}[x]$).
 
 Our strategy to prove \autoref{thm:cayley-hamilton} is:
 \begin{itemize}
@@ -295,9 +295,13 @@ We proceed by induction on \( n = \dim V \).
 \textbf{Induction Hypothesis:} Assume the result holds for all dimensions \( < n \). We show it holds for \( \dim V = n \).
 
 \textbf{Step 1: Existence of eigenvector.}
-Let \( \lambda_1 \) be an eigenvalue of \( T \). By the fundamental theorem of algebra (applied over \( \mathbb{C} \)), there exists an eigenvector \( \mathbf{v} \in V \setminus \{{\bf 0}\} \) such that
+Since \(\lambda_1\) is a root of \(\mathcal{X}_T(x)\),
 \[
-T(\mathbf{v}) = \lambda_1 \mathbf{v}.
+\det(\lambda_1 I-T)=0.
+\]
+Hence \(T-\lambda_1 I\) is not invertible, so \(\ker(T-\lambda_1 I)\neq\{\mathbf{0}\}\). Choose \(\mathbf{v}\neq\mathbf{0}\) in this kernel. Then
+\[
+T(\mathbf{v})=\lambda_1\mathbf{v}.
 \]
 
 \textbf{Step 2: Invariant subspace and quotient.}
@@ -425,7 +429,7 @@ x_1 \\
 x_n 
 \end{pmatrix}$. Continuing the process, one will kill of the $n-1$, $n-2$, $\dots$ until the top entry of ${\bf v}$, i.e.
 \[
-{\mathcal{X}}_{T}\left( T_{\mathcal{A},\mathcal{A}}\right){\bf v} = M_n \cdots M_1 \mathbf{v} = {\bf 0}.
+{\mathcal{X}}_{T}\left( T_{\mathcal{A},\mathcal{A}}\right){\bf v} = M_1 \cdots M_n \mathbf{v} = {\bf 0}.
 \]
 Consequently, ${\mathcal{X}}_{T}\left( T_{\mathcal{A},\mathcal{A}} \right)$ is a zero matrix.
 \end{proof}
@@ -440,22 +444,23 @@ Let \( T : V \to V \) be a linear operator on a finite-dimensional vector space 
 \end{theorem}
 
 \begin{proof}
-Suppose that \( \mathcal{X}_T(x) = x^n + a_{n - 1}x^{n - 1} + \cdots + a_0 \in \mathbb{F}[x] \). By considering an algebraically closed field \( \overline{\mathbb{F}} \supseteq \mathbb{F} \), we write
-\begin{align}
-\mathcal{X}_T(x) &= x^n + a_{n - 1}x^{n - 1} + \cdots + a_0, \quad a_i \in \mathbb{F} \label{eq:charpoly-explicit} \\
-                 &= (x - \lambda_1)\cdots(x - \lambda_n), \quad \lambda_i \in \overline{\mathbb{F}}. \label{eq:charpoly-factor}
-\end{align}
-By applying \autoref{prop:cayley-hamilton-diagonalizable}, we conclude \( \mathcal{X}_T(T) = {\bf 0} \), where the coefficients in the formula \( \mathcal{X}_T(T) = {\bf 0} \) with respect to \( T \) lie in \( \overline{\mathbb{F}} \).
-
-Then we argue that these coefficients are actually in \( \mathbb{F} \). Expand the full expression for \( \mathcal{X}_T(T) \):
-\begin{align}
-\mathcal{X}_T(T) &= (T - \lambda_1 I)\cdots(T - \lambda_n I) \label{eq:poly-subst-product} \\
-                 &= T^n - (\lambda_1 + \cdots + \lambda_n) T^{n-1} + \cdots + (-1)^n \lambda_1 \cdots \lambda_n I \label{eq:poly-subst-expanded} \\
-                 &= T^n + a_{n - 1} T^{n - 1} + \cdots + a_0 I. \label{eq:poly-subst-original}
-\end{align}
-The equality \eqref{eq:poly-subst-original} holds because the coefficients of the polynomials in \eqref{eq:charpoly-explicit} and \eqref{eq:charpoly-factor} are equal.
-
-Therefore, we conclude that \( \mathcal{X}_T(T) = 0 \) over the field \( \mathbb{F} \).
+Choose a basis \(\mathcal A\) of \(V\), and let
+\[
+M=T_{\mathcal A,\mathcal A}\in M_n(\mathbb F).
+\]
+Let \(\overline{\mathbb F}\) be an algebraic closure of \(\mathbb F\), and regard the same matrix \(M\) as a linear operator
+\[
+\overline T:\overline{\mathbb F}^{\,n}\to\overline{\mathbb F}^{\,n}.
+\]
+Its characteristic polynomial is the same polynomial \(\mathcal X_T(x)\), now viewed in \(\overline{\mathbb F}[x]\), and hence it splits into linear factors. By \autoref{prop:cayley-hamilton-diagonalizable},
+\[
+\mathcal X_T(M)=0
+\]
+in \(M_n(\overline{\mathbb F})\). Since \(M\) and all coefficients of \(\mathcal X_T\) lie in \(\mathbb F\), the same matrix identity holds in \(M_n(\mathbb F)\). Therefore
+\[
+[\mathcal X_T(T)]_{\mathcal A,\mathcal A}=\mathcal X_T(M)=0,
+\]
+so \(\mathcal X_T(T)=0\).
 \end{proof}
 
 \begin{corollary}\label{cor:cayley-hamiton-cor}
@@ -470,27 +475,30 @@ m_T(x) = [p_1(x)]^{f_1} \cdots [p_k(x)]^{f_k}, \quad \text{for some } 0 < f_i \l
 \end{corollary}
 
 \begin{proof}
-The statement $m_T(x) \mid \mathcal{X}_T(x)$ follows from \autoref{thm:cayley-hamilton-weaker} and \autoref{prop:minpoly-divides}. Therefore, $0 < f_i \leq e_i$ for all $i$.
-
-Suppose on the contrary that $f_i = 0$ for some $i$. Without loss of generality, let $i = 1$.
-
-It’s clear that $\gcd(p_1, p_j) = 1$ for all $j \neq 1$, which implies
+The divisibility \(m_T(x)\mid\mathcal X_T(x)\) follows from \autoref{thm:cayley-hamilton-weaker} and \autoref{prop:minpoly-divides}. Hence
 \[
-a(x)p_1(x) + b(x)p_j(x) = 1, \quad \text{for some } a(x), b(x) \in \mathbb{F}[x].
+m_T(x)=p_1(x)^{f_1}\cdots p_k(x)^{f_k}
+\qquad\text{with}\qquad
+0\leq f_i\leq e_i.
 \]
-Considering the field extension $\overline{\mathbb{F}} \supseteq \mathbb{F}$, we have
+It remains to show \(f_i>0\). Suppose, without loss of generality, that \(f_1=0\). Then
 \[
-p_1(x) = (x - \mu_1) \cdots (x - \mu_\ell).
+\gcd(p_1,m_T)=1,
 \]
-For any root $\mu_m$ of $p_1$, $m = 1, \ldots, \ell$, we have
+so there exist \(a(x),b(x)\in\mathbb F[x]\) such that
 \[
-a(\mu_m)p_1(\mu_m) + b(\mu_m)p_j(\mu_m) = 1 \Rightarrow b(\mu_m)p_j(\mu_m) = 1 \Rightarrow p_j(\mu_m) \neq 0,
+a(x)p_1(x)+b(x)m_T(x)=1.
 \]
-i.e., $\mu_m$ is not a root of $p_j$ for all $j \neq 1$.
 
-Therefore, $\mu_m$ is a root of $\mathcal{X}_T(x)$ but not a root of $m_T(x)$. Then $\mu_m$ is an eigenvalue of $T$, i.e., $T \mathbf{v} = \mu_m \mathbf{v}$ for some $\mathbf{v} \neq 0$.
-
-Recall that $m_{T,\mathbf{v}} = x - \mu_m$, so $m_{T,\mathbf{v}} = x - \mu_m \mid m_T(x)$, which contradicts the assumption $f_1 = 0$.
+Choose a root \(\mu\) of \(p_1\) in an algebraic closure \(\overline{\mathbb F}\). For a matrix \(M=T_{\mathcal A,\mathcal A}\), regarded as an operator on \(\overline{\mathbb F}^{\,n}\), the equality \(\mathcal X_T(\mu)=0\) implies that \(M-\mu I\) is singular. Hence there is \(0\neq\mathbf v\in\overline{\mathbb F}^{\,n}\) with \(M\mathbf v=\mu\mathbf v\). Since \(m_T(M)=0\),
+\[
+0=m_T(M)\mathbf v=m_T(\mu)\mathbf v,
+\]
+so \(m_T(\mu)=0\). Evaluating the Bezout identity at \(\mu\) gives
+\[
+1=a(\mu)p_1(\mu)+b(\mu)m_T(\mu)=0,
+\]
+a contradiction. Thus \(f_i>0\) for every \(i\).
 \end{proof}
 
 \begin{example}\label{ex:minpoly-examples}

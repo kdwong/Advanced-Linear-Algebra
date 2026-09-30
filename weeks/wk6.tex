@@ -306,7 +306,7 @@ The determinant is independent of the choice of basis. For any other basis \(\ma
 \begin{definition}[Characteristic Polynomial]\label{def:char-poly}
 Let \( T : V \to V \) be a linear operator. The \emph{characteristic polynomial} \( \mathcal{X}_T(x) \in \mathbb{F}[x] \) of \(T\) is defined by
 \[
-\mathcal{X}_T(x) := \det\left( T_{\mathcal{A},\mathcal{A}} - x I \right),
+\mathcal{X}_T(x) := \det\left( x I - T_{\mathcal{A},\mathcal{A}} \right),
 \]
 where \(T_{\mathcal{A},\mathcal{A}}\) is the matrix representation of \(T\) with respect to any basis \(\mathcal{A}\) of \(V\), and \(I\) is the identity matrix of the same size.
 \end{definition}
@@ -315,7 +315,7 @@ where \(T_{\mathcal{A},\mathcal{A}}\) is the matrix representation of \(T\) with
     The above definition is independent of the choice of basis of $V$. Indeed, let $\mathcal{B}$ be another basis of $V$, then 
     $$T_{\mathcal{B},\mathcal{B}} = M^{-1}T_{\mathcal{A},\mathcal{A}}M$$
     for $M := C_{\mathcal{A},\mathcal{B}}$. As a result, one has:
-    $$\det(T_{\mathcal{B},\mathcal{B}} - xI) = \det(M^{-1}T_{\mathcal{A},\mathcal{A}}M - xM^{-1}IM) = \det(M)^{-1}\det(T_{\mathcal{A},\mathcal{A}} - xI)\det(M) = \det(T_{\mathcal{A},\mathcal{A}} - xI).$$
+    $$\det(xI-T_{\mathcal{B},\mathcal{B}}) = \det(xM^{-1}IM-M^{-1}T_{\mathcal{A},\mathcal{A}}M) = \det(M)^{-1}\det(xI-T_{\mathcal{A},\mathcal{A}})\det(M) = \det(xI-T_{\mathcal{A},\mathcal{A}}).$$
 \end{remark}
 
 In the next couple of chapters, we will study two fundamental theorems that reveal the internal structure of linear operators:

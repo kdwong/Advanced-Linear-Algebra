@@ -230,10 +230,26 @@ spans $\wedge^p V$.
 By \autoref{prop:wedge_alternating} and \autoref{rmk:wedge_alternating}, many of the terms in the above expression are zero or repeated. For instance, using \autoref{rmk:wedge_alternating}, one can reorder the expression $\mathbf{v}_{i_1} \wedge \cdots \wedge \mathbf{v}_{i_p}$, so that (up to $\pm$) the indices
 $i_1 < \dots < i_p$ are in ascending order. 
 After removing the repeated entries, one conclude that
-$$\mathcal{B} := \{ \mathbf{v}_{i_1} \wedge \cdots \wedge \mathbf{v}_{i_p} \mid 1 \leq i_1 < \dots < i_k \leq n\}$$
+$\mathcal{B} := \{ \mathbf{v}_{i_1} \wedge \cdots \wedge \mathbf{v}_{i_p} \mid 1 \leq i_1 < \dots < i_p \leq n\}$
 spans $\wedge^pV.$
 
-We omit the proof that $\mathcal{B}$ is linearly independent - its proof is similar to that of \autoref{thm:tensorbasis}. Consequently, $\mathcal{B}$ is a basis of $\wedge^pV$ which has cardinality equal to $\binom{n}{p}$.
+To prove linear independence, let $\{f_1,\dots,f_n\}$ be the dual basis. For each $J=(j_1<\cdots<j_p)$, define
+\[
+\phi_J(\mathbf{x}_1,\dots,\mathbf{x}_p)
+=
+\det\bigl(f_{j_r}(\mathbf{x}_s)\bigr)_{1\leq r,s\leq p}.
+\]
+This is alternating and $p$-linear, so by the universal property it induces a linear map
+$\overline\phi_J:\wedge^pV\to\mathbb F$. For $I=(i_1<\cdots<i_p)$,
+\[
+\overline\phi_J(\mathbf v_{i_1}\wedge\cdots\wedge\mathbf v_{i_p})
+=
+\begin{cases}
+1,& I=J,\\
+0,& I\neq J.
+\end{cases}
+\]
+Thus any linear relation among the elements of $\mathcal B$ has every coefficient equal to zero. Hence $\mathcal{B}$ is a basis of $\wedge^pV$ and has cardinality $\binom{n}{p}$.
 \end{proof}
 
 Let $T: V \to V$ be a linear operator. By applying the universal property for exterior power (\autoref{thm:univ-exterior}), one can obtain as in \autoref{cor:multi_linear_trans}:
@@ -268,9 +284,9 @@ By \autoref{cor:exterior_transformation} we have a linear operator
 $$T^{\wedge n} : \wedge^n V \to \wedge^n V.$$
 on the $1$-dimensional vector space $\wedge^n V$.
 
-Therefore, for all $\tau \in \wedge^n V$, there exists $\alpha_T \in \mathbb{F}$ such that
-\[T^{\wedge n}(\tau) = \alpha_T \tau,\]
-and we define the \emph{determinant} of $T$ by:
+Since $\wedge^n V$ is one-dimensional, there exists a unique $\alpha_T \in \mathbb{F}$ such that
+\[T^{\wedge n}(\tau) = \alpha_T \tau\]
+for all $\tau \in \wedge^n V$. We define the \emph{determinant} of $T$ by
 \(\det(T) := \alpha_T,\) so that
 $T^{\wedge n}(\tau) = \det(T) \tau $
 Note that this definition does not depend on any choice of basis of $V$.
@@ -364,7 +380,7 @@ T : V \to V, \quad \text{with } T(\mathbf{v}) = A \mathbf{v}, \quad A \in M_{n \
 Then \(\det(T) = \Delta(A).\)
 \end{theorem}
 \begin{proof}
-Let \( \{ {\bf e}_1, \dots, {\bf e}_n \} \) be the usual basis of \( V \cong \mathbb{F}^n \), and  \( \{ {\bf a}_1, \dots, {\bf a}_n \} \) be the columns of $A$. Then:
+Let \( \{ {\bf e}_1, \dots, {\bf e}_n \} \) be the usual basis of \( V \cong \mathbb{F}^n \), and let \( \{ {\bf a}_1, \dots, {\bf a}_n \} \) be the columns of $A$. Then
 \begin{equation} \label{eq:determinant}
 \begin{aligned}
 \det(T) \cdot {\bf e}_1 \wedge \cdots \wedge {\bf e}_n
@@ -373,17 +389,12 @@ Let \( \{ {\bf e}_1, \dots, {\bf e}_n \} \) be the usual basis of \( V \cong \ma
   &= {\bf a}_1 \wedge \cdots \wedge {\bf a}_n.
 \end{aligned}
 \end{equation}
-We wish to show $\Delta(T) = \det(A)$. Indeed, by MAT2040, $\Delta(A)$ is uniquely determined by the following:
-\begin{itemize}
-    \item $\Delta(I_{n \times n}) = 1$;
-    \item $\Delta( \cdots | \alpha{\bf a}_i + \beta {\bf a}_i'| \cdots) = \alpha\Delta( \cdots | {\bf a}_i| \cdots) + \beta\Delta( \cdots | {\bf a}_i'| \cdots)$.
-    \item $\Delta( \cdots | {\bf v}| \cdots| {\bf v}| \cdots) = 0$
-\end{itemize}
-By the multilinearity and alternating property of the wedge product, one can easily see that $\det(T)$ satisfies all the above properties. For instance, for the last point, one can apply \autoref{eq:determinant} and get:
+
+For a matrix $A$, let $D(A):=\det(T_A)$, where $T_A(\mathbf v)=A\mathbf v$. Equation \eqref{eq:determinant} shows that $D(A)$ is multilinear and alternating in the columns of $A$, and $D(I_n)=1$. By the uniqueness characterization of the matrix determinant,
 \[
-\det(T) {\bf e}_1 \wedge \cdots \wedge {\bf e}_n = \cdots \wedge {\bf v} \wedge \cdots \wedge {\bf v} \wedge \cdots = {\bf 0} = 0({\bf e}_1 \wedge \cdots \wedge {\bf e}_n).
+D(A)=\Delta(A).
 \]
-Therefore, \(\det(T) = 0\) as stated in the third point. And the result follows.
+Therefore, $\det(T)=\Delta(A)$.
 \end{proof}
 
 So we have just proved that our definition of $\det$ matches with that of the usual definition of determinant of matrices. Moreover, we have:

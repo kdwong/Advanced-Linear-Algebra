@@ -158,13 +158,13 @@ and hence
 
 \textbf{Case 2:} \( \langle \mathbf{u}, \mathbf{v} \rangle \in \mathbb{C} \smallsetminus \mathbb{R} \): We apply a rescaling argument to reduce to the real case. Define
 \[
-\mathbf{w} := \frac{1}{\langle \mathbf{u}, \mathbf{v} \rangle} \mathbf{u}.
+\mathbf{w} := \frac{1}{\overline{\langle \mathbf{u}, \mathbf{v} \rangle}} \mathbf{u}.
 \]
 Then
 \[
 \langle \mathbf{w}, \mathbf{v} \rangle 
 = \left\langle \frac{1}{\langle \mathbf{u}, \mathbf{v} \rangle} \mathbf{u}, \mathbf{v} \right\rangle
-= \overline{ \frac{1}{\overline{ \langle \mathbf{u}, \mathbf{v} \rangle }} } \cdot \langle \mathbf{u}, \mathbf{v} \rangle = 1 \in \mathbb{R}.
+= \frac{1}{\langle \mathbf{u}, \mathbf{v} \rangle} \cdot \langle \mathbf{u}, \mathbf{v} \rangle = 1 \in \mathbb{R}.
 \]
 Now applying the Cauchy–Schwarz inequality in the real case to vectors \( \mathbf{w} \) and \( \mathbf{v} \), we have
 \[
@@ -172,7 +172,7 @@ Now applying the Cauchy–Schwarz inequality in the real case to vectors \( \mat
 \]
 i.e.,
 \[
-1 \leq \left\| \frac{1}{\langle \mathbf{u}, \mathbf{v} \rangle} \mathbf{u} \right\| \cdot \| \mathbf{v} \| = \frac{\| \mathbf{u} \|}{| \langle \mathbf{u}, \mathbf{v} \rangle |} \cdot \| \mathbf{v} \|.
+1 \leq \left\| \frac{1}{\overline{\langle \mathbf{u}, \mathbf{v} \rangle}} \mathbf{u} \right\| \cdot \| \mathbf{v} \| = \frac{\| \mathbf{u} \|}{| \langle \mathbf{u}, \mathbf{v} \rangle |} \cdot \| \mathbf{v} \|.
 \]
 Rearranging gives
 \[
@@ -267,26 +267,28 @@ Moreover, if \(\dim \left( V\right)  < \infty\) , then these are equalities.
 \end{proposition}
 
 
-\begin{proof} 1. Suppose that \(\left\{  {{\mathbf{v}}_{1},\ldots ,{\mathbf{v}}_{k}}\right\}\) forms a basis for \(U\) , and by basis extension, we obtain \(\left\{  {{\mathbf{v}}_{1},\ldots ,{\mathbf{v}}_{k},{\mathbf{v}}_{k + 1},\ldots ,{\mathbf{v}}_{n}}\right\}\) is a basis for \(V\) .
-
-By Gram-Schmidt Process, any finite basis induces an orthonormal basis. Therefore, suppose that \(\left\{  {{\mathbf{e}}_{1},\ldots ,{\mathbf{e}}_{k}}\right\}\) forms an orthonormal basis for \(U\) , and \(\left\{  {{\mathbf{e}}_{k + 1},\ldots ,{\mathbf{e}}_{n}}\right\}\) forms an orthonormal basis for \({U}^{\perp}\) .
-
-It’s easy to show \(V = U + {U}^{\perp}\) using orthonormal basis.
-
-\noindent 2. (a) The inclusion \({\left( U + W\right) }^{\perp} \supseteq  {U}^{\perp} \cap  {W}^{\perp}\) is trivial; for the other inclusion, suppose
-\({\bf v} \in  {\left( U + W\right) }^{\perp}\). Then
+\begin{proof}
+1. Let $\{\mathbf v_1,\ldots,\mathbf v_k\}$ be a basis of $U$ and extend it to a basis of $V$. Applying Gram--Schmidt gives an orthonormal basis $\{\mathbf e_1,\ldots,\mathbf e_n\}$ of $V$ such that $\{\mathbf e_1,\ldots,\mathbf e_k\}$ is a basis of $U$. Then $\mathbf e_{k+1},\ldots,\mathbf e_n\in U^\perp$. Conversely, if $\mathbf x=\sum_{i=1}^n c_i\mathbf e_i\in U^\perp$, then for $1\leq i\leq k$,
 \[
-\langle \mathbf{v},\mathbf{u} + \mathbf{w}\rangle  = 0,\forall \mathbf{u} \in  U,\mathbf{w} \in  W
+0=\langle \mathbf x,\mathbf e_i\rangle=\overline{c_i},
 \]
-Taking \(\mathbf{u} \equiv  \mathbf{0}\) in the equality above gives \(\langle \mathbf{v},\mathbf{w}\rangle  = 0\) , i.e., \(\mathbf{v} \in  W^{\perp}\) . Similarly, \({\bf v} \in U^{\perp}\) .
+so $c_i=0$. Hence $U^\perp=\operatorname{span}\{\mathbf e_{k+1},\ldots,\mathbf e_n\}$ and $V=U\oplus U^\perp$.
 
-(b) Follow the similar argument as in (2a). If \(\dim \left( V\right)  < \infty\) , then write down the orthonormal basis for \({U}^{\perp} + {W}^{\perp}\) and \({\left( U \cap  W\right) }^{\perp}\) .
+2. (a) If $\mathbf v\in U^\perp\cap W^\perp$, then $\langle\mathbf v,\mathbf u+\mathbf w\rangle=0$ for all $\mathbf u\in U$, $\mathbf w\in W$, so $\mathbf v\in(U+W)^\perp$. Conversely, if $\mathbf v\in(U+W)^\perp$, taking $\mathbf w=0$ and $\mathbf u=0$ shows that $\mathbf v\in U^\perp\cap W^\perp$.
 
-(c) Follow the similar argument as in (2a). If \(\dim \left( V\right)  < \infty\) , then
+(b) If $\mathbf v=\mathbf u'+\mathbf w'$ with $\mathbf u'\in U^\perp$ and $\mathbf w'\in W^\perp$, then $\langle\mathbf v,\mathbf x\rangle=0$ for every $\mathbf x\in U\cap W$. Thus $U^\perp+W^\perp\subseteq(U\cap W)^\perp$.
+
+(c) If $\mathbf u\in U$ and $\mathbf v\in U^\perp$, then $\langle\mathbf v,\mathbf u\rangle=0$, hence also $\langle\mathbf u,\mathbf v\rangle=0$. Thus $U\subseteq(U^\perp)^\perp$.
+
+If $V$ is finite-dimensional, part 1 gives
 \[
-V = {U}^{\perp} \oplus  {\left( {U}^{\perp}\right) }^{\perp} = U \oplus  {U}^{\perp}.
+\dim (U^\perp)^\perp=\dim V-\dim U^\perp=\dim U,
 \]
-Therefore, \(\dim{\left( {U}^{\perp}\right) }^{\perp} = \dim(U)\) and hence we have \({\left( {U}^{\perp}\right)}^{\perp} = (U)\)
+so the inclusion in (c) is an equality. Applying (a) to $U^\perp,W^\perp$ and then (c),
+\[
+(U^\perp+W^\perp)^\perp=(U^\perp)^\perp\cap(W^\perp)^\perp=U\cap W.
+\]
+Taking orthogonal complements and using (c) again gives $(U\cap W)^\perp=U^\perp+W^\perp$, proving equality in (b).
 \end{proof}
 
 
@@ -343,7 +345,7 @@ Let \( \mathbf{v}_1, \mathbf{v}_2 \in V \) and \( c, d \in \mathbb{R} \). For an
 so \( \phi(c\mathbf{v}_1 + d\mathbf{v}_2) = c\phi(\mathbf{v}_1) + d\phi(\mathbf{v}_2) \), i.e., \( \phi \) is \(\mathbb{R}\)-linear.
 
 \textbf{(3) Isomorphism when \(\dim V < \infty\).}  
-Since \( V \) and \( V^* \) have the same dimension, and \( \phi \) is injective (because \( \phi_{\mathbf{v}} = 0 \) implies \( \langle \mathbf{v}, \mathbf{w} \rangle = 0 \) for all \( \mathbf{w} \), which by positive-definiteness implies \( \mathbf{v} = 0 \)), \( \phi \) is a linear isomorphism.
+Since \( V \) and \( V^* \) have the same dimension as real vector spaces, and \( \phi \) is injective (because \( \phi_{\mathbf{v}} = 0 \) implies \( \langle \mathbf{v}, \mathbf{w} \rangle = 0 \) for all \( \mathbf{w} \), which by positive-definiteness implies \( \mathbf{v} = 0 \)), \( \phi \) is a linear isomorphism.
 \end{proof}
 
 We now relate orthogonal complement with the annihilator space:

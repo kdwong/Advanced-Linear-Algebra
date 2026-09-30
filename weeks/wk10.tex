@@ -84,17 +84,21 @@ where the extra complex conjugate comes from the conjugate symmetry of $\langle 
 \]
 \end{proposition}
 
-\begin{proof} Suppose that \(T_{\mathcal{B},\mathcal{B}} = \left( {a}_{ij}\right)\), where \(T\left( {\mathbf{e}}_{j}\right)  = \mathop{\sum }\limits_{{k = 1}}^{n}{a}_{kj}{\mathbf{e}}_{k}\), then
+\begin{proof}
+Suppose that $T_{\mathcal{B},\mathcal{B}}=(a_{ij})$ and $(T')_{\mathcal{B},\mathcal{B}}=(b_{ij})$. Since $\mathcal B$ is orthonormal,
 \[
-\left\langle  {{\mathbf{e}}_{i},T\left( {\mathbf{e}}_{j}\right) }\right\rangle   = \left\langle  {{\mathbf{e}}_{i},\mathop{\sum }\limits_{{k = 1}}^{n}{a}_{kj}{\mathbf{e}}_{k}}\right\rangle
-= \mathop{\sum }\limits_{{k = 1}}^{n}{a}_{kj}\left\langle  {{\mathbf{e}}_{i},{\mathbf{e}}_{k}}\right\rangle
-= {a}_{ij}
+a_{ij}=\langle \mathbf e_i,T(\mathbf e_j)\rangle,
+\qquad
+b_{ij}=\langle \mathbf e_i,T'(\mathbf e_j)\rangle.
 \]
-Also, suppose \({\left( {T}^{\prime }\right) }_{\mathcal{B},\mathcal{B}} = \left( {b}_{ij}\right)\), we imply \({T}^{\prime }\left( {\mathbf{e}}_{j}\right)  = \mathop{\sum }\limits_{{k = 1}}^{n}{b}_{ij}{\mathbf{e}}_{k}\), which follows that
-\(
-\left\langle  {{\mathbf{e}}_{i},{T}^{\prime }\left( {\mathbf{e}}_{j}\right) }\right\rangle   = {b}_{ij}
-\)
-i.e., \(\overline{{a}_{ji}} = {b}_{ij}\).
+By conjugate symmetry and the definition of the adjoint,
+\[
+b_{ij}
+=\overline{\langle T'(\mathbf e_j),\mathbf e_i\rangle}
+=\overline{\langle \mathbf e_j,T(\mathbf e_i)\rangle}
+=\overline{a_{ji}}.
+\]
+Hence $(T')_{\mathcal B,\mathcal B}=\overline{(T_{\mathcal B,\mathcal B})^{\mathrm T}}$.
 \end{proof}
 
 Note that \autoref{prop:adjoint_matrix} does not hold if \(\mathcal{B}\) is not an orthonormal basis.
@@ -170,7 +174,7 @@ To see why the claim holds, we separate the case when $V$ is a vector space over
 \]
 by the fundamental theorem of algebra (c.f. \autoref{thm:fundamental_theorem_of_algebra}). Since there is a linear factor $\left( {x - {\lambda }_{1}}\right)$, we obtain an eigen-pair \(\left( {{\lambda }_{1},\mathbf{v}}\right)\) for $T$.
 
-\item If \(\mathbb{F} = \mathbb{R}\), let $\mathcal{A}$ be an orthogonal basis of $V$ and
+\item If \(\mathbb{F} = \mathbb{R}\), let $\mathcal{A}$ be an orthonormal basis of $V$ and
 $$A := T_{\mathcal{A},\mathcal{A}} \in M_{(k+1) \times (k+1)}(\mathbb{R}).$$
 By \autoref{eg: self_adjoint_matrix_transformation}, $A$ is a symmetric matrix.
 
@@ -178,7 +182,7 @@ By \autoref{eg: self_adjoint_matrix_transformation}, $A$ is a symmetric matrix.
 Consider $\tau: \mathbb{R}^{k+1} \to \mathbb{R}^{k+1}$ the matrix transformation $\tau({\bf x}) = A{\bf x}$ $({\bf x} \in \mathbb{R}^{k+1})$, and 
 $\tau_{\mathbb{C}}: \mathbb{C}^{k+1} \to \mathbb{C}^{k+1}$ be the {\bf complexified} matrix transformation $T({\bf z}) = A{\bf z}$ $({\bf z} \in \mathbb{C}^{k+1})$. Obviously, one has
 \begin{equation} \label{eq:real_to_complex}
-\mathcal{X}_T(x) = \mathcal{X}_{\tau}(x) = \mathcal{X}_{\tau_{\mathbb{C}}}(x) = \det(A - xI).
+\mathcal{X}_T(x) = \mathcal{X}_{\tau}(x) = \mathcal{X}_{\tau_{\mathbb{C}}}(x) = \det(xI-A).
 \end{equation}
 
 On the other hand, since $A$ is symmetric, \autoref{eg: self_adjoint_matrix_transformation} implies that $\tau_{\mathbb{C}}$ is self-adjoint. By the fundamental theorem of algebra again, 
@@ -191,7 +195,7 @@ where all \({\lambda }_{i}\in \mathbb{R}\) are real by \autoref{prop: self-adjoi
 Consider \(U = \operatorname{span}\{ \mathbf{v}\}\), then
 \begin{itemize}
 \item \(U\) is \(T\)-invariant by \(T({\bf v}) = \lambda {\bf v}\);
-\item \({U}^{ \bot  }\) is \(T\) -invariant by \autoref{prop: self-adjoint-eigenvalue};
+\item \({U}^{ \bot  }\) is \(T\) -invariant by \autoref{prop:self-adjoint-orthogonal-space};
 \item \(V = U \oplus  {U}^{ \bot  }\), since \(V\) is finite dimensional inner product space.
 \end{itemize}
 
@@ -459,40 +463,40 @@ Let \( T \) be a normal operator on \( V \). Then:
 
 \begin{proof}
 \begin{enumerate}[label=\arabic*.]
-\item One has
-$\langle {\bf v}, T{\bf v} \rangle = \langle T'{\bf v}, {\bf v} \rangle = \langle T'T {\bf v}, {\bf v} \rangle = \langle TT'{\bf v}, {\bf v} \rangle = \langle T'{\bf v}, T'{\bf v} \rangle = \|T'({\bf v})\|^2.$ 
-Therefore, \( \|T({\bf v})\|^2 = \|T'({\bf v})\|^2 \Rightarrow \|T({\bf v})\| = \|T'({\bf v})\| \).
-
-\item
-By the hypothesis that \( T \) is normal, we have \( T'T = TT' \). We check:
+\item Since $T'T=TT'$,
 \[
-(T - \lambda I)'(T - \lambda I) = (T - \lambda I)(T - \lambda I)'.
+\|T\mathbf v\|^2
+=\langle T\mathbf v,T\mathbf v\rangle
+=\langle T'T\mathbf v,\mathbf v\rangle
+=\langle TT'\mathbf v,\mathbf v\rangle
+=\langle T'\mathbf v,T'\mathbf v\rangle
+=\|T'\mathbf v\|^2.
 \]
-Expanding both sides:
+Hence $\|T\mathbf v\|=\|T'\mathbf v\|$, and therefore $T\mathbf v=0$ if and only if $T'\mathbf v=0$.
+
+\item We have
 \begin{align*}
-(T - \lambda I)'(T - \lambda I) &= (T' - \bar{\lambda} I)(T - \lambda I) = T'T - \bar{\lambda} T - \lambda T' + |\lambda|^2 I, \\
-(T - \lambda I)(T - \lambda I)' &= T T' - \lambda T' - \bar{\lambda} T + |\lambda|^2 I.
+(T-\lambda I)'(T-\lambda I)
+&=(T'-\bar\lambda I)(T-\lambda I)\\
+&=T'T-\bar\lambda T-\lambda T'+|\lambda|^2I,
 \end{align*}
-These expressions are equal since \( T'T = TT' \), hence \( T - \lambda I \) is normal.
-
-\item
-\textbf{Forward direction:} If \( (T - \lambda I){\bf v} = 0 \), then \( T{\bf v} = \lambda {\bf v} \). By (2), \( T - \lambda I \) is normal, so:
+while
 \[
-\| (T - \lambda I)'({\bf v}) \| = 0 \Rightarrow (T - \lambda I)'({\bf v}) = 0 \Rightarrow T'{\bf v} = \bar{\lambda} {\bf v}.
+(T-\lambda I)(T-\lambda I)'
+=TT'-\lambda T'-\bar\lambda T+|\lambda|^2I.
 \]
+These are equal because $T'T=TT'$, so $T-\lambda I$ is normal.
 
-\textbf{Reverse direction:} Suppose \( (T' - \bar{\lambda} I){\bf v} = 0 \), i.e., \( T'{\bf v} = \bar{\lambda} {\bf v} \). Then:
+\item Put $S=T-\lambda I$. By part 2, $S$ is normal, and by part 1,
 \[
-(T' - \bar{\lambda} I) {\bf v} = 0 \Rightarrow ((T')' - \lambda I) {\bf v} = 0,
+S\mathbf v=0\quad\Longleftrightarrow\quad S'\mathbf v=0.
 \]
-but \( (T')' = T \) by the self-adjoint property in Hilbert spaces. Thus, \( (T - \lambda I){\bf v} = 0 \).
-
-\item
-Suppose \( T{\bf v} = \lambda {\bf v} \), \( T\bm{w} = \mu \bm{w} \), and \( \lambda \neq \mu \). Then:
+Since $S'=T'-\bar\lambda I$, this is exactly
 \[
-\lambda \langle {\bf v}, \bm{w} \rangle = \langle T{\bf v}, \bm{w} \rangle = \langle {\bf v}, T'\bm{w} \rangle = \langle {\bf v}, \bar{\mu} \bm{w} \rangle = \bar{\mu} \langle {\bf v}, \bm{w} \rangle.
+T\mathbf v=\lambda\mathbf v
+\quad\Longleftrightarrow\quad
+T'\mathbf v=\bar\lambda\mathbf v.
 \]
-Since \( \lambda \neq \bar{\mu} \), we must have \( \langle {\bf v}, \bm{w} \rangle = 0 \). The proof is complete.
 \end{enumerate}
 \end{proof}
 
@@ -542,7 +546,7 @@ i.e., \(\left( {\left. T\right| }_{{U}^{ \bot  }}\right)\) is normal on \({U}^{ 
 
 Applying the same trick as in \autoref{thm: spectral-self-aadjoint}, we imply there exists an orthonormal basis \(\left\{  {{\mathbf{e}}_{2},\ldots,{\mathbf{e}}_{n}}\right\}\) of eigenvectors of \(\left( {\left. T\right| }_{{U}^{ \bot  }}\right)\). Then we can argue that
 \[
-\mathcal{B} = \left\{  {{\mathbf{v}}^{\prime } = \frac{\mathbf{v}}{\parallel \mathbf{v}\parallel},{\mathbf{e}}_{2},\ldots,{\mathbf{e}}_{k + 1}}\right\}
+\mathcal{B} = \left\{  {{\mathbf{v}}^{\prime } = \frac{\mathbf{v}}{\parallel \mathbf{v}\parallel},{\mathbf{e}}_{2},\ldots,{\mathbf{e}}_{n}}\right\}
 \]
 is a basis of orthonormal eigenvectors of \(V\).
 \end{proof}
