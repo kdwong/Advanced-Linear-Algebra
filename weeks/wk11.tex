@@ -556,32 +556,26 @@ Moreover, if $\dim(V), \dim(W) < \infty$, then $\Phi$ is an isomorphism.
 \end{corollary} 
 
 \begin{proof}
-Construct the mapping
-
+The map
 \[
-\Phi  : \operatorname{Hom}\left( {V,V}\right)  \times  \operatorname{Hom}\left( {W,W}\right)  \rightarrow  \operatorname{Hom}\left( {V \otimes  W,V \otimes  W}\right)
+F:\operatorname{Hom}(V,V)\times\operatorname{Hom}(W,W)
+\longrightarrow \operatorname{Hom}(V\otimes W,V\otimes W),
+\qquad F(A,B)=A\otimes B,
 \]
-with \(\Phi \left( {A,B}\right)  = A \otimes  B
-\). Then \(\Phi\) is indeed bilinear: for instance,
-\[
-\Phi \left( {{pA} + {qC},B}\right)  = \left( {{pA} + {qC}}\right)  \otimes  B
-= p\left( {A \otimes  B}\right)  + q\left( {C \otimes  B}\right)
-= {p\Phi }\left( {A,B}\right)  + {q\Phi }\left( {C,B}\right)
-\]
-So the first statement follows from the universal property of tensor product.
+is bilinear by \autoref{prop:tensorlineartrans}. Hence the universal property gives the required linear map $\Phi$.
 
-If \(\dim \left( V\right) ,\dim \left( W\right)  < \infty\), we imply
-\begin{align*}
-\dim(\operatorname{Hom}\left( {V,V}\right)  \otimes  \operatorname{Hom}\left( {W,W}\right)) &= \dim \left( {\operatorname{Hom}\left( {V,V}\right) }\right) \cdot \dim \left( {\operatorname{Hom}\left( {W,W}\right) }\right)
-\\
-&= \left\lbrack  {\dim \left( V\right) \dim \left( V\right) }\right\rbrack   \cdot  \left\lbrack  {\dim \left( W\right) \dim \left( W\right) }\right\rbrack   \\
-&= {\left\lbrack  \dim \left( V\right) \dim \left( W\right) \right\rbrack  }^2
-\\
-&= {\left\lbrack  \dim \left( V \otimes  W\right) \right\rbrack  }^2
-\\
-&= \dim \left( {\operatorname{Hom}\left( {V \otimes  W,V \otimes  W}\right) }\right)
-\end{align*}
-Therefore, is \(\Phi\) is an isomorphism.    
+Now suppose $\dim V=n$ and $\dim W=m$, and choose bases $\{\mathbf e_1,\ldots,\mathbf e_n\}$ and $\{\mathbf f_1,\ldots,\mathbf f_m\}$. Let
+\[
+E_{ab}(\mathbf e_i)=\delta_{bi}\mathbf e_a,
+\qquad
+F_{cd}(\mathbf f_j)=\delta_{dj}\mathbf f_c.
+\]
+The $E_{ab}\otimes F_{cd}$ form a basis of $\operatorname{Hom}(V,V)\otimes\operatorname{Hom}(W,W)$. Moreover,
+\[
+\Phi(E_{ab}\otimes F_{cd})(\mathbf e_i\otimes\mathbf f_j)
+=\delta_{bi}\delta_{dj}\,\mathbf e_a\otimes\mathbf f_c.
+\]
+Thus their images are precisely the matrix units for $\operatorname{Hom}(V\otimes W,V\otimes W)$ with respect to the tensor-product basis. Hence the images form a basis, so $\Phi$ is an isomorphism.
 \end{proof}
 
 As a result, every linear operator \(\alpha  : V \otimes  W \rightarrow V \otimes  W\) can be expressed as
