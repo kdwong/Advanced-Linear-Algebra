@@ -209,7 +209,7 @@ i.e., \(\bf v\) is a finite linear combination of elements in \(S\), which impli
 
     \item  By hypothesis, \(\mathbf{w} = \alpha_1{\bf v}_1 + \cdots  + \alpha_n{\bf v}_n\) with \(\alpha_1 \neq  0\), which implies
     \[
-    {\bf v}_1 =  - \frac{\alpha_2}{\alpha_1}{\bf v}_2 + \cdots  + \left( {-\frac1{\alpha_1}\mathbf{w}}\right)
+    {\bf v}_1 = \frac{1}{\alpha_1}\mathbf{w} - \frac{\alpha_2}{\alpha_1}{\bf v}_2 - \cdots - \frac{\alpha_n}{\alpha_1}{\bf v}_n
     \]
     which implies \({\bf v}_1 \in  \operatorname{span}\left\{  {\mathbf{w},{\bf v}_2,\ldots ,{\bf v}_n}\right\}\). It suffices to show \({\bf v}_1 \notin  \operatorname{span}\left\{  {{\bf v}_2,\ldots ,{\bf v}_n}\right\}\). Suppose on the contrary that \({\bf v}_1 \in  \operatorname{span}\left\{  {{\bf v}_2,\ldots ,{\bf v}_n}\right\}\). It’s clear that \(\operatorname{span}\left\{  {{\bf v}_1,\ldots ,{\bf v}_n}\right\}   =\)  \(\operatorname{span}\left\{  {{\bf v}_2,\ldots ,{\bf v}_n}\right\}\). (left as exercise). Therefore,
     \[
@@ -321,7 +321,7 @@ The main reason for introducing basis is the following:
     \noindent $(\Rightarrow) $If $\mathcal{B}$ is a basis of $V$, by definition, $v \in\mathrm{Span}(\mathcal{B})$ for all $v \in V$. As for uniqueness, suppose \eqref{eq-uniquelc} holds. Then by reordering the indices, we assume that
     $$\{v_1,\dots, v_n\} \cap \{v_1', \dots, v_m'\} = \{v_1 = v_1', \dots, v_k = v_k'\}.$$
     and by subtraction, one has
-    $$(\alpha_1 - \beta_1)v_1 + \dots + (\alpha_k - \beta_k) v_k + \alpha_{k+1} v_{k+1} + \dots \alpha_{k+1} v_{n} + (-\beta_{k+1})v_{k+1}' + \dots + (-\beta_{m}) v_{m}' = {\bf 0}$$
+    $$(\alpha_1 - \beta_1)v_1 + \dots + (\alpha_k - \beta_k) v_k + \alpha_{k+1} v_{k+1} + \dots + \alpha_n v_{n} + (-\beta_{k+1})v_{k+1}' + \dots + (-\beta_{m}) v_{m}' = {\bf 0}$$
     Now by applying linear independence of $\mathcal{B}$ on the finite subset
     $$\{v_1 = v_1', \dots, v_k = v_k', v_{k+1}, \dots, v_n, v_{k+1}', \dots, v_m'\},$$
     the above equation only has zero solutions
