@@ -213,32 +213,27 @@ $$i({\bf v}, {\bf w}) := {\bf v} \otimes {\bf w}$$
 is in \textnormal{Obj} in \autoref{def:univtensor} (i.e. $i$ is a bilinear map). Moreover, by taking $\mathcal{T} := V \otimes W$ in \autoref{def:univtensor}, it satisfies the universal property of tensor products.
 \end{theorem}
 \begin{proof}
-By Equations \eqref{eq:tensorrule1} and \eqref{eq:tensorrule2}, \( i \) satisfies:
-\begin{align*}
-    i(\mathbf{v}_1 + \mathbf{v}_2, \mathbf{w}) &= i(\mathbf{v}_1, \mathbf{w}) + i(\mathbf{v}_2, \mathbf{w}), \\
-    i(\mathbf{v}, \mathbf{w}_1 + \mathbf{w}_2) &= i(\mathbf{v}, \mathbf{w}_1) + i(\mathbf{v}, \mathbf{w}_2), \\
-    i(a \mathbf{v}, \mathbf{w}) &= a \cdot i(\mathbf{v}, \mathbf{w}), \quad i(\mathbf{v}, b \mathbf{w}) = b \cdot i(\mathbf{v}, \mathbf{w}),
-\end{align*}
-so \( i \in \textnormal{Obj} \) as in \autoref{def:univtensor}.
+By Equations \eqref{eq:tensorrule1} and \eqref{eq:tensorrule2}, the map $i(\mathbf v,\mathbf w)=\mathbf v\otimes\mathbf w$ is bilinear.
 
-Now, let \( (\phi : V \times W \to U) \in \textnormal{Obj} \) be any bilinear map into some vector space \( U \). Since \( \phi \) is bilinear, it respects the relations that generate \( \mathfrak{Y} \). Therefore, we can define a linear map
+Let $\phi:V\times W\to U$ be bilinear. Since the set $S=V\times W$ is a basis of $\mathfrak X$, there is a unique linear map
 \[
-T_{\phi} : V \otimes W \to U, \quad T_{\phi}(\mathbf{v} \otimes \mathbf{w}) := \phi(\mathbf{v}, \mathbf{w}),
+\widehat\phi:\mathfrak X\to U,
+\qquad
+\widehat\phi((\mathbf v,\mathbf w))=\phi(\mathbf v,\mathbf w).
 \]
-and extend linearly to all of \( V \otimes W \) (recall all elements of $V \otimes W$ are of the form ${\bf v}^{(1)} \otimes {\bf w}^{(1)} + \dots + {\bf v}^{(k)} \otimes {\bf w}^{(k)}$). This map is well-defined because if two elements \( (\mathbf{v}, \mathbf{w}) \) and \( (\mathbf{v}', \mathbf{w}') \) are equivalent in \( \mathfrak{X}/\mathfrak{Y} \), i.e. $({\bf v},{\bf w}) - ({\bf v}',{\bf w}') \in \mathfrak{Y}$, then their images under \( \phi \) are equal due to bilinearity.
-
-It follows directly from the definition that the diagram
+By bilinearity of $\phi$, every generator used in the definition of $\mathfrak Y$ lies in $\ker(\widehat\phi)$. Hence $\mathfrak Y\subseteq\ker(\widehat\phi)$, so $\widehat\phi$ induces a well-defined linear map
 \[
-\begin{tikzcd}[row sep=large, column sep=large]
-V \times W \arrow[r, "i", blue] \arrow[rd, "\phi"'] & V \otimes W \arrow[d, "T_{\phi}"', dashed, red] \\
-& U
-\end{tikzcd}
+T_\phi:V\otimes W=\mathfrak X/\mathfrak Y\to U,
+\qquad
+T_\phi(x+\mathfrak Y)=\widehat\phi(x).
 \]
-commutes, i.e., \( \phi = T_\phi \circ i \).
+In particular,
+\[
+T_\phi(\mathbf v\otimes\mathbf w)=\phi(\mathbf v,\mathbf w),
+\]
+so $\phi=T_\phi\circ i$.
 
-For uniqueness: suppose there exists another linear map \( T' : V \otimes W \to U \) such that \( \phi = T' \circ i \). Then both \( T_\phi \) and \( T' \) agree on all pure tensors \( \mathbf{v} \otimes \mathbf{w} \), and hence, by linearity, on all of \( V \otimes W \). So \( T' = T_\phi \).
-
-Therefore, the pair \( (V \otimes W, i) \) satisfies the universal property of the tensor product.
+If $T':V\otimes W\to U$ is another linear map with $\phi=T'\circ i$, then $T'$ and $T_\phi$ agree on every pure tensor $\mathbf v\otimes\mathbf w$. Since pure tensors span $V\otimes W$, we have $T'=T_\phi$. Thus the universal property holds.
 \end{proof}
 
 \section{Basis of \(V \otimes W\)}
@@ -255,7 +250,7 @@ Substituting \(\mathbf{v} = \alpha_1{\bf v}_1 + \cdots  + \alpha_n{\bf v}_n\) in
 
 \begin{align*}
 \mathbf{v} \otimes  \mathbf{w} &= \left( {\alpha_1{\bf v}_1 + \cdots  + \alpha_n{\bf v}_n}\right)  \otimes  \mathbf{w} \\
-&= \left( {\alpha_1{\bf v}_1}\right)  \otimes  {\bf w}_1 + \cdots  + \left( {\alpha_n{\bf v}_n}\right)  \otimes  {\bf w}_n \\
+&= \left( {\alpha_1{\bf v}_1}\right)  \otimes  \mathbf{w} + \cdots  + \left( {\alpha_n{\bf v}_n}\right)  \otimes  \mathbf{w} \\
 &= \alpha_1\left( {{\bf v}_1 \otimes  \mathbf{w}}\right)  + \cdots  + \alpha_n\left( {{\bf v}_n \otimes  \mathbf{w}}\right)
 \end{align*}
 
@@ -283,7 +278,7 @@ By \autoref{eq:generaltensor}, any vector in \(V \otimes  W\) is of the form
 \]
 Therefore,
 \[
-{\bf v}^{\left( 1\right) } \otimes  {\bf w}^{\left( 1\right) } + \cdots  + {\bf v}^{\left( k \right) } \otimes  {\bf w}^{\left( k \right) } = \mathop{\sum }\limits_{{\ell = 1}}^{k}\mathop{\sum }\limits_{{i = 1}}^n\mathop{\sum }\limits_{{j = 1}}^{m}\alpha_{i}^{\left( k\right) }\beta_{j}^{\left( k\right) }\left( {{\bf v}_{i} \otimes  {\bf w}_{j}}\right)
+{\bf v}^{\left( 1\right) } \otimes  {\bf w}^{\left( 1\right) } + \cdots  + {\bf v}^{\left( k \right) } \otimes  {\bf w}^{\left( k \right) } = \mathop{\sum }\limits_{{\ell = 1}}^{k}\mathop{\sum }\limits_{{i = 1}}^n\mathop{\sum }\limits_{{j = 1}}^{m}\alpha_{i}^{\left( \ell\right) }\beta_{j}^{\left( \ell\right) }\left( {{\bf v}_{i} \otimes  {\bf w}_{j}}\right)
 \]
 
 In other words, \(\left\{  {{\bf v}_{i} \otimes  {\bf w}_{j} \mid  1 \leq  i \leq  n,1 \leq  j \leq  m}\right\}\) spans \(V \otimes  W\).
@@ -298,7 +293,7 @@ In other words, \(\left\{  {{\bf v}_{i} \otimes  {\bf w}_{j} \mid  1 \leq  i \le
 By \autoref{prop: tensor-span}, it suffices to show that the set \(\left\{  {{\bf v}_{i} \otimes  {\bf w}_{j} \mid  1 \leq  i \leq  n,1 \leq  j \leq  m}\right\}\) is linear independent. Suppose that
 
 \begin{equation}\label{eq: tensor-linear-independece}
-    \mathop{\sum }\limits_{{i = 1}}^n\mathop{\sum }\limits_{{j = 1}}^n\alpha_{ij}\left( {{\bf v}_{i} \otimes  {\bf w}_{j}}\right)  = \mathbf{0} \tag{13.3}
+    \mathop{\sum }\limits_{{i = 1}}^n\mathop{\sum }\limits_{{j = 1}}^m\alpha_{ij}\left( {{\bf v}_{i} \otimes  {\bf w}_{j}}\right)  = \mathbf{0} \tag{13.3}
 \end{equation}
 
 
@@ -328,19 +323,19 @@ In other words, \(\Pi_{p,q}\left( {\mathbf{v} \otimes  \mathbf{w}}\right)  = {\p
 \end{itemize}
 
 \[
-{\Pi }_{p,q}\left( {\mathop{\sum }\limits_{{i = 1}}^n\mathop{\sum }\limits_{{j = 1}}^n\alpha_{ij}\left( {{\bf v}_{i} \otimes  {\bf w}_{j}}\right) }\right)  = {\Pi }_{p,q}\left( \mathbf{0}\right)
+{\Pi }_{p,q}\left( {\mathop{\sum }\limits_{{i = 1}}^n\mathop{\sum }\limits_{{j = 1}}^m\alpha_{ij}\left( {{\bf v}_{i} \otimes  {\bf w}_{j}}\right) }\right)  = {\Pi }_{p,q}\left( \mathbf{0}\right)
 \]
 
 Or equivalently,
 
 \[
-\mathop{\sum }\limits_{{i = 1}}^n\mathop{\sum }\limits_{{j = 1}}^n\alpha_{ij}{\Pi }_{p,q}\left( {{\bf v}_{i} \otimes  {\bf w}_{j}}\right)  = 0,
+\mathop{\sum }\limits_{{i = 1}}^n\mathop{\sum }\limits_{{j = 1}}^m\alpha_{ij}{\Pi }_{p,q}\left( {{\bf v}_{i} \otimes  {\bf w}_{j}}\right)  = 0,
 \]
 
 i.e.,
 
 \[
-\mathop{\sum }\limits_{{i = 1}}^n\mathop{\sum }\limits_{{j = 1}}^n\alpha_{ij}{\phi }_{p}\left( {\bf v}_{i}\right) {\psi }_{q}\left( {\bf w}_{j}\right)  = \alpha_{p,q} = 0
+\mathop{\sum }\limits_{{i = 1}}^n\mathop{\sum }\limits_{{j = 1}}^m\alpha_{ij}{\phi }_{p}\left( {\bf v}_{i}\right) {\psi }_{q}\left( {\bf w}_{j}\right)  = \alpha_{p,q} = 0
 \]
 
 Following this procedure, we can argue that \(\alpha_{ij} = 0\) for all $i$ and \(j\).
@@ -505,23 +500,14 @@ Therefore, the usage of the notion " \(\otimes\) " is justified for the definiti
 \end{proposition}
 
 \begin{proof}
-using matrix multiplication. For instance, consider the operation \(\left( {T + {T}^{\prime }}\right)  \otimes  S\), with
-
-\({\left( T\right) }_{\mathcal{A},\mathcal{A}} = \left( {a}_{ij}\right) ,{\left( {T}^{\prime }\right) }_{\mathcal{A},\mathcal{A}} = \left( {c}_{ij}\right) ,{\left( S\right) }_{\mathcal{B},\mathcal{B}} = \left( {b}_{ij}\right).\)
-
-We compute its matrix representation directly:
-
+For every pure tensor $\mathbf v\otimes\mathbf w$,
 \begin{align*}
-{\left( \left( T + {T}^{\prime }\right)  \otimes  S\right) }_{\mathcal{C},\mathcal{C}} &= {\left( T + {T}^{\prime }\right) }_{\mathcal{A},\mathcal{A}} \otimes  {\left( S\right) }_{\mathcal{B},\mathcal{B}}\\
-&= \left\lbrack  {{\left( T\right) }_{\mathcal{A},\mathcal{A}} + {\left( {T}^{\prime }\right) }_{\mathcal{A},\mathcal{A}}}\right\rbrack   \otimes  {\left( S\right) }_{\mathcal{B},\mathcal{B}}\\
-&= {\left( T\right) }_{\mathcal{A},\mathcal{A}} \otimes  {\left( S\right) }_{\mathcal{B},\mathcal{B}} + {\left( {T}^{\prime }\right) }_{\mathcal{A},\mathcal{A}} \otimes  {\left( S\right) }_{\mathcal{B},\mathcal{B}}
+\bigl((aT_1+bT_2)\otimes S\bigr)(\mathbf v\otimes\mathbf w)
+&=(aT_1+bT_2)(\mathbf v)\otimes S(\mathbf w)\\
+&=a\,(T_1(\mathbf v)\otimes S(\mathbf w))+b\,(T_2(\mathbf v)\otimes S(\mathbf w))\\
+&=\bigl(a(T_1\otimes S)+b(T_2\otimes S)\bigr)(\mathbf v\otimes\mathbf w).
 \end{align*}
-
-where the last equality is by the additive rule for Kronecker product for matrices. Therefore,
-
-\[
-{\left( \left( T + {T}^{\prime }\right)  \otimes  S\right) }_{\mathcal{C},\mathcal{C}} = {\left( T \otimes  S\right) }_{\mathcal{C},\mathcal{C}} + {\left( {T}^{\prime } \otimes  S\right) }_{\mathcal{C},\mathcal{C}} \Rightarrow  \left( {T + {T}^{\prime }}\right)  \otimes  S = T \otimes  S + {T}^{\prime } \otimes  S
-\]
+Since pure tensors span $V\otimes W$, the first identity follows. The second identity is proved in the same way in the second factor.
 \end{proof} 
 
 \noindent Alternatively, we study the linear transformations by applying them on a basis of $V \otimes W$. Another way of the proof is by computing
