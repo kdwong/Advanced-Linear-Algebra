@@ -360,7 +360,7 @@ And consider a {\bf set} $\mathcal{C}_m'$ in $W_{m-1}$:
 \[
 \mathcal{C}_m' = \{ T({\bf u}_1) + \ker(T^{m-2}), \ldots, T({\bf u}_{\ell}) + \ker(T^{m-2}) \} \subseteq W_{m-1}.
 \]
-(Note that each $T^{m-1}(T({\bf u}_j)) = T({\bf u}_j) = {\bf 0}$ since ${\bf u}_j \in \ker(T)$, therefore $T({\bf u}_j) \in \ker(T^{m-1})$)
+(Note that $T^{m-1}(T({\bf u}_j))=T^m({\bf u}_j)={\bf 0}$ since ${\bf u}_j\in\ker(T^m)$, therefore $T({\bf u}_j)\in\ker(T^{m-1})$.)
 
 {\bf Claim:} \(\mathcal{C}_{m}'\) is linearly independent in $W_{m-1}$: consider the equation
 \[
@@ -374,7 +374,7 @@ In other words, ${\mathop{\sum }\limits_{j}k_j{\bf u}_j} \in  \ker \left( {T}^{m
 \[
 {\mathop{\sum }\limits_{j}k_j{\bf u}_j} + \ker \left( {T}^{m-1}\right)  = {\mathbf{0}}_{W_m} \Leftrightarrow  \mathop{\sum }\limits_{j}k_j\left( {{{\bf u}_j} + \ker \left( {T}^{m-1}\right) }\right)  = {\mathbf{0}}_{W_m}.
 \]
-Since \(\mathcal{B}_m = \left\{ {\bf u}_j + \ker \left( {T}^{m-1}\right)\ |\ 1 \leq j \leq \ell_m\right\}\) forms a basis of \({W}_m\), we have \(k_j = 0\) for all \(j\), and $\mathcal{C}_m'$ is linearly independent in $W_{m-1}$. 
+Since \(\mathcal{B}_m' = \left\{ {\bf u}_j + \ker \left( {T}^{m-1}\right)\ |\ 1 \leq j \leq \ell\right\}\) forms a basis of \({W}_m\), we have \(k_j = 0\) for all \(j\), and $\mathcal{C}_m'$ is linearly independent in $W_{m-1}$. 
 
 By Basis Extension Theorem, one can get a basis of $W_{m-1}$ of the form
 \[
@@ -477,13 +477,13 @@ Consequently, we have the following collection of bases of $W_i$:
 \end{array}
 \]}
 
-Indeed, by removing the $\ker(T^i)$'s in the above list, the vectors will give a basis of $V$ (Exercise). Now choose the ordered basis \( \mathcal{A} \) of $V$ by arranging the vectors:
+Indeed, let $K_i:=\ker(T^i)$. Each displayed set gives representatives of a basis of $K_i/K_{i-1}$. Inductively, adjoining representatives of a basis of $K_i/K_{i-1}$ to a basis of $K_{i-1}$ gives a basis of $K_i$. Hence the listed representatives give a basis of $K_m=V$. Now choose the ordered basis \( \mathcal{A} \) of $V$ by arranging the vectors:
 \[
 \mathcal{A} = \left\{ 
 \begin{matrix}
 T^{m-1}({\bf u}_1), & T^{m-2}({\bf u}_1), & \cdots & T^2({\bf u}_1), & T({\bf u}_1), & {\bf u}_1, \\
 \vdots & \vdots &  & \vdots & \vdots & \vdots\\
-T^{m-1}({\bf u}_{\ell}), & T^{m-2}({\bf u}_{\ell}), & \cdots & T^2({\bf u}_1), & T({\bf u}_{\ell}), & {\bf u}_{\ell}, \\
+T^{m-1}({\bf u}_{\ell}), & T^{m-2}({\bf u}_{\ell}), & \cdots & T^2({\bf u}_{\ell}), & T({\bf u}_{\ell}), & {\bf u}_{\ell}, \\
 T^{m-2}({\bf v}_1), & T^{m-3}({\bf v}_1), & \cdots & T({\bf v}_1), & {\bf v}_1, &  \\
 \vdots & \vdots &  & \vdots & \vdots \\
 T^{m-2}({\bf v}_p), & T^{m-3}({\bf v}_p), & \cdots & T({\bf v}_p), & {\bf v}_p, &  \\
@@ -516,7 +516,7 @@ where $N_i = \begin{pmatrix}
         & 0 & \ddots &        \\
         &         & \ddots & 1      \\
         &         &        & 0
-\end{pmatrix}$ is an $i \times i$-matrix, and $J_m$ appears $\ell$ times, $J_{m-1}$ appears $p$ times, $J_{m-2}$ appears $q$ times in the above matrix.
+\end{pmatrix}$ is an $i \times i$-matrix, and $N_m$ appears $\ell$ times, $N_{m-1}$ appears $p$ times, $N_{m-2}$ appears $q$ times in the above matrix.
 \end{proof}
 
 \subsection{Third Step of Proof}
