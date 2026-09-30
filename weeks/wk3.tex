@@ -171,7 +171,7 @@ Then \( \left( C_{\mathcal{A},\mathcal{A}'} \right)^{-1} = C_{\mathcal{A}',\math
         &= \left[ \sum_{j=1}^n r_j \mathbf{v}_j \right]_{\mathcal{A}'} = [\mathbf{v}]_{\mathcal{A}'} \notag
     \end{align*}
      where the first and last line follow from the linearity of the coordinate map \( [\,\cdot\,]_{\mathcal{A}} \) and \( [\,\cdot\,]_{\mathcal{A}'} \), and the fourth equality follows from (1) above. Therefore, \eqref{eq:change-basis} is shown for all \( \mathbf{v} \in V \). 
-    \item \textbf{Matrix inverse.} We verify \( C_{\mathcal{A}',\mathcal{A}} C_{\mathcal{A},\mathcal{A}'} = I_n \):
+    \item \textbf{Matrix inverse.} We verify \( C_{\mathcal{A},\mathcal{A}'} C_{\mathcal{A}',\mathcal{A}} = I_n \):
 
     \begin{align*}
     \mathbf{v}_j 
@@ -190,10 +190,10 @@ Then \( \left( C_{\mathcal{A},\mathcal{A}'} \right)^{-1} = C_{\mathcal{A}',\math
     \end{cases}
     \]
     
-    By matrix multiplication, the \( (k,j) \)-th entry of \( C_{\mathcal{A}',\mathcal{A}} C_{\mathcal{A},\mathcal{A}'} \) is
+    By matrix multiplication, the \( (k,j) \)-th entry of \( C_{\mathcal{A},\mathcal{A}'} C_{\mathcal{A}',\mathcal{A}} \) is
     \[
-    [C_{\mathcal{A}',\mathcal{A}} C_{\mathcal{A},\mathcal{A}'}]_{kj} = \left( \sum_{i=1}^n \beta_{ki} \alpha_{ij} \right) = \delta_{jk}
-    \Rightarrow C_{\mathcal{A}',\mathcal{A}} C_{\mathcal{A},\mathcal{A}'} = I_n.
+    [C_{\mathcal{A},\mathcal{A}'} C_{\mathcal{A}',\mathcal{A}}]_{kj} = \left( \sum_{i=1}^n \beta_{ki} \alpha_{ij} \right) = \delta_{jk}
+    \Rightarrow C_{\mathcal{A},\mathcal{A}'} C_{\mathcal{A}',\mathcal{A}} = I_n.
     \]
 
   \item \textbf{Symmetry.} Similarly,
@@ -204,7 +204,7 @@ Then \( \left( C_{\mathcal{A},\mathcal{A}'} \right)^{-1} = C_{\mathcal{A}',\math
   \end{align*}
   giving \( \sum_{i=1}^n \alpha_{ki} \beta_{ij} = \delta_{kj} \), so
   \[
-  C_{\mathcal{A},\mathcal{A}'} C_{\mathcal{A}',\mathcal{A}} = I_n.
+  C_{\mathcal{A}',\mathcal{A}} C_{\mathcal{A},\mathcal{A}'} = I_n.
   \]
 \end{enumerate}
 \end{proof}
@@ -404,7 +404,7 @@ Suppose \( \mathcal{A} = \{ \mathbf{v}_1, \dots, \mathbf{v}_n \} \) and \( \math
 \begin{enumerate}
     \item \textbf{Basis vector} We compare both sides:
 \begin{align*}
-\text{LHS} = T_{\mathcal{B}\mathcal{A}} [{\bf v}_j]_{\mathcal{A}} = [\alpha_{ij}] \cdot \mathbf{e}_j = \begin{pmatrix} \alpha_{1j} \\ \vdots \\ \alpha_{nj} \end{pmatrix} = \left( \sum_{i=1}^{m} \alpha_{ij} \mathbf{w}_i \right)_{\mathcal{B}} = [T (\mathbf{v}_j)]_{\mathcal{B}} = \text{RHS} 
+\text{LHS} = T_{\mathcal{B}\mathcal{A}} [{\bf v}_j]_{\mathcal{A}} = [\alpha_{ij}] \cdot \mathbf{e}_j = \begin{pmatrix} \alpha_{1j} \\ \vdots \\ \alpha_{mj} \end{pmatrix} = \left( \sum_{i=1}^{m} \alpha_{ij} \mathbf{w}_i \right)_{\mathcal{B}} = [T (\mathbf{v}_j)]_{\mathcal{B}} = \text{RHS} 
 \end{align*}
 So the identity \( T_{\mathcal{B}\mathcal{A}} [\mathbf{v}_j]_{\mathcal{A}} = [T\mathbf{v}_j]_{\mathcal{B}} \) holds for all basis vectors \( \mathbf{v}_j \).
 
