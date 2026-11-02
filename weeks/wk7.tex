@@ -448,15 +448,34 @@ Choose a basis \(\mathcal A\) of \(V\), and let
 \[
 M=T_{\mathcal A,\mathcal A}\in M_n(\mathbb F).
 \]
-Let \(\overline{\mathbb F}\) be an algebraic closure of \(\mathbb F\), and regard the same matrix \(M\) as a linear operator
+Suppose that
 \[
-\overline T:\overline{\mathbb F}^{\,n}\to\overline{\mathbb F}^{\,n}.
+\mathcal X_T(x)=x^n+a_{n-1}x^{n-1}+\cdots+a_0,
+\qquad a_i\in\mathbb F.
 \]
-Its characteristic polynomial is the same polynomial \(\mathcal X_T(x)\), now viewed in \(\overline{\mathbb F}[x]\), and hence it splits into linear factors. By \autoref{prop:cayley-hamilton-diagonalizable},
+Let \(\overline{\mathbb F}\) be an algebraic closure of \(\mathbb F\).
+Regard \(M\) as a matrix over \(\overline{\mathbb F}\), representing a linear operator on \(\overline{\mathbb F}^{\,n}\).
+Its characteristic polynomial remains \(\mathcal X_T(x)\), and it factors as
 \[
-\mathcal X_T(M)=0
+\mathcal X_T(x)=(x-\lambda_1)\cdots(x-\lambda_n),
+\qquad \lambda_i\in\overline{\mathbb F}.
 \]
-in \(M_n(\overline{\mathbb F})\). Since \(M\) and all coefficients of \(\mathcal X_T\) lie in \(\mathbb F\), the same matrix identity holds in \(M_n(\mathbb F)\). Therefore
+By \autoref{prop:cayley-hamilton-diagonalizable}, applied to this operator over \(\overline{\mathbb F}\),
+\[
+(M-\lambda_1I)\cdots(M-\lambda_nI)=0
+\quad\text{in }M_n(\overline{\mathbb F}).
+\]
+Since the two expressions for \(\mathcal X_T(x)\) are equal, their coefficients agree. Hence
+\begin{align*}
+0&=(M-\lambda_1I)\cdots(M-\lambda_nI)\\
+&=M^n-(\lambda_1+\cdots+\lambda_n)M^{n-1}
+ +\cdots+(-1)^n\lambda_1\cdots\lambda_nI\\
+&=M^n+a_{n-1}M^{n-1}+\cdots+a_0I\\
+&=\mathcal X_T(M).
+\end{align*}
+Every entry of \(\mathcal X_T(M)\) lies in \(\mathbb F\). Since
+\(M_n(\mathbb F)\subseteq M_n(\overline{\mathbb F})\), the equality
+\(\mathcal X_T(M)=0\) also holds in \(M_n(\mathbb F)\). Therefore
 \[
 [\mathcal X_T(T)]_{\mathcal A,\mathcal A}=\mathcal X_T(M)=0,
 \]
