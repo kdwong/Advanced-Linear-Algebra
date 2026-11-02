@@ -494,30 +494,35 @@ m_T(x) = [p_1(x)]^{f_1} \cdots [p_k(x)]^{f_k}, \quad \text{for some } 0 < f_i \l
 \end{corollary}
 
 \begin{proof}
-The divisibility \(m_T(x)\mid\mathcal X_T(x)\) follows from \autoref{thm:cayley-hamilton-weaker} and \autoref{prop:minpoly-divides}. Hence
+The divisibility $m_T(x)\mid\mathcal{X}_T(x)$ follows from
+\autoref{thm:cayley-hamilton-weaker} and \autoref{prop:minpoly-divides}.
+Therefore, $0\leq f_i\leq e_i$ for all $i$.
+
+Suppose, for the sake of contradiction, that $f_1=0$.
+Since the polynomials $p_1,\ldots,p_k$ are distinct and irreducible,
+$\gcd(p_1,p_j)=1$ for every $j\neq 1$. Thus there exist
+$a_j(x),b_j(x)\in\mathbb{F}[x]$ such that
 \[
-m_T(x)=p_1(x)^{f_1}\cdots p_k(x)^{f_k}
-\qquad\text{with}\qquad
-0\leq f_i\leq e_i.
+a_j(x)p_1(x)+b_j(x)p_j(x)=1.
 \]
-It remains to show \(f_i>0\). Suppose, without loss of generality, that \(f_1=0\). Then
+Choose a root $\mu$ of $p_1$ in the algebraic closure
+$\overline{\mathbb{F}}$. Evaluating the preceding identity at $\mu$ gives
+$p_j(\mu)\neq 0$ for all $j\neq 1$. Since $f_1=0$, we conclude that
 \[
-\gcd(p_1,m_T)=1,
-\]
-so there exist \(a(x),b(x)\in\mathbb F[x]\) such that
-\[
-a(x)p_1(x)+b(x)m_T(x)=1.
+m_T(\mu)=\prod_{j=2}^k p_j(\mu)^{f_j}\neq 0.
 \]
 
-Choose a root \(\mu\) of \(p_1\) in an algebraic closure \(\overline{\mathbb F}\). For a matrix \(M=T_{\mathcal A,\mathcal A}\), regarded as an operator on \(\overline{\mathbb F}^{\,n}\), the equality \(\mathcal X_T(\mu)=0\) implies that \(M-\mu I\) is singular. Hence there is \(0\neq\mathbf v\in\overline{\mathbb F}^{\,n}\) with \(M\mathbf v=\mu\mathbf v\). Since \(m_T(M)=0\),
+On the other hand, $p_1(x)$ divides $\mathcal{X}_T(x)$, so
+$\mathcal{X}_T(\mu)=0$. Let $M=T_{\mathcal A,\mathcal A}$ be a matrix
+representation of $T$. Regarding $M$ as a matrix over
+$\overline{\mathbb{F}}$, we have $\det(\mu I-M)=0$. Hence there is a
+nonzero vector $\mathbf v\in\overline{\mathbb{F}}^{\,n}$ such that
+$M\mathbf v=\mu\mathbf v$. Since $m_T(M)=0$, it follows that
 \[
 0=m_T(M)\mathbf v=m_T(\mu)\mathbf v,
 \]
-so \(m_T(\mu)=0\). Evaluating the Bezout identity at \(\mu\) gives
-\[
-1=a(\mu)p_1(\mu)+b(\mu)m_T(\mu)=0,
-\]
-a contradiction. Thus \(f_i>0\) for every \(i\).
+which implies $m_T(\mu)=0$, a contradiction.
+Therefore $f_i>0$ for every $i$.
 \end{proof}
 
 \begin{example}\label{ex:minpoly-examples}
